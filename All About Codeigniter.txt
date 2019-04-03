@@ -1,0 +1,13 @@
+1. Menghilangkan index.php : 
+- buat base_url dahulu di dalam file "config.php" dalam folder config
+- kosongkan isi dalam index_page dalam file yang sama
+- pindahkan .htaccess ke folder utama codeigniter
+- copy paste isi dalam .htaccess seperti ini : 
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)$ index.php/$1 [L]
