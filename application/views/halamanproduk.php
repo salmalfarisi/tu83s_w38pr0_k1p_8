@@ -17,15 +17,23 @@
     </div>
   </div>
   &nbsp;
+
+</div>
+
+<div class="container">
+  <div class="row">
   <?php foreach($produk as $p) { ?>
   <div class="col-lg-3 col-md-4 mb-4">
-	<div class="card" style="width: 18rem;">
-		<img class="card-img-top" src="<?php echo base_url('assets/produk/listproduk/'). $p->gambarproduk; ?>">
+	<div class="mb-4" style="width: 18rem;">
+	<!-- Pembuatan Link ke halaman detail produk sama mengeluarkan data gambar ke halaman website -->
+		<a href="#"><img class="card-img-top" src="<?php echo base_url('assets/produk/listproduk/'). $p->gambarproduk; ?>"></a>
 		<div class="card-body text-center">
-			<h5 class="card-title"><?php echo $p->namaproduk; ?></h5>
-			<p class="card-text">Rp<?php echo number_format($p->harga,0,",","."); ?></p>
-			<a href="#" class="btn btn-primary">Go somewhere</a>
+			<a href="#"><h5 class="hurufproduk card-title"><?php echo $p->namaproduk; ?></h5></a>
+			<a href="#"><p class="hurufproduk card-text">Rp<?php echo number_format($p->harga,0,",","."); ?></p></a>
+			
 		</div>
 	</div>
   </div>
   <?php } ?>
+  </div>
+</div>

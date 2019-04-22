@@ -5,25 +5,47 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html>
 <head>
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css') ?>">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="<?php echo base_url('assets/@fortawesome/fontawesome-free/css/fontawesome.css') ?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/@fortawesome/fontawesome-free/css/fontawesome.min.css') ?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>">
+	<script src="<?php echo base_url('assets/js/ajaxgoogle/jquery-3.4.0.min.js') ?>"></script>
+	<script src="<?php echo base_url('assets/js/ajaxgoogle/popper.min.js') ?>"></script>
+	<script src="<?php echo base_url('assets/js/ajaxgoogle/bootstrap.min.js') ?>"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
   <style type="text/css">
   	.img-crs{
   		width: 95px;
   		height: 41px
   	}
+
+  	.outfoot{
+  		-webkit-text-stroke-width: 1px;
+    	-webkit-text-stroke-color: white;
+    	margin-top: 80px;
+    	font-size:30px;
+      font-weight: bold;
+  	}
+  	.outfoot2{
+  		-webkit-text-stroke-width: 1px;
+    	-webkit-text-stroke-color: white;
+    	margin-top: 80px;
+    	font-size:25px;
+      font-weight: bold;
+  	}
+
   	.headers {
   		position:relative;
   		border-style: solid;
   		border-width: 0.1px 0px 0.1px 0px;
   		border-color: grey;
-  		padding: 10px 0px 10px 0px
+  		padding: 10px 0px 10px 0px;
+  		width: 98%;
   	}
 	.carousel2{
 		height: 500px;
-		width: 1510px;
+		width: 95%;
 		margin-left: 10px;
 		margin-right: 10px;
 		margin-top: 10px
@@ -35,6 +57,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 	}
+
+    .awesome {
+      
+      font-family: bebas neue;
+      
+      width:100%;
+      
+      margin: 0 auto;
+      text-align: center;
+      
+     
+      position: absolute;
+      -webkit-animation:colorchange 2s infinite alternate;
+      
+      
+    }
+
+    @-webkit-keyframes colorchange {
+      
+      50% {
+        
+        color: #FF6600;
+      }
+      
+      100% {
+        
+        color: #000000;
+      }
+      
+      
+    }
 	.konten2{
 		width: 105%;
 		left : -15px;
@@ -46,10 +99,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	}
 
-	.footer{
+	.footer1{
 		background-color: #F3F3F3;
 		margin-top: 15px;
 
+	}
+
+	.footer2{
+		background-color: #222222;
 	}
 
 	.imgfooter{
@@ -62,6 +119,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		color : black;
 		
 	}
+	
+	.white{
+		color: white;
+	}
+
   </style>
 	<title><?php echo $this->session->userdata('Judul Halaman');?></title>
 </head>
@@ -85,10 +147,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
 	</div>
 	<div class="row headers">
-		<div class="col-2 offset-5"><b>Browse By Gender</b></div>
+		<div class="col-2 offset-6 a1"><b>Browse By Gender</b></div>
 	</div>
 	<div class="row headers">
 		<div class="col-1 offset-3"><a class="hurufproduk " href="<?php echo base_url('Geoffmax/produkcowok');?>">BOY</a></div>
 		<div class="col-1 offset-2"><img src="<?php echo base_url('assets/contoh home/pic/mid.png')?>" style="height: 80%"></div>
 		<div class="col-1 offset-2"><a class="hurufproduk " href="<?php echo base_url('Geoffmax/produkcewek');?>">GIRL</a></div>
-	</div>
+	</div> 

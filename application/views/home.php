@@ -1,9 +1,7 @@
-
-	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
-
-
   <!-- The slideshow -->
-  <div class="carousel-inner">
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+  <div  style="width:90%;"  class="carousel-inner">
     <div class="carousel-item active" >
       <img src="<?php echo base_url('assets/contoh home/pic/c1.jpg') ?>" class="carousel2" alt="Los Angeles">
     </div>
@@ -17,6 +15,8 @@
       <img src="<?php echo base_url('assets/contoh home/pic/c4.jpg')?>" class="carousel2" alt="New York">
     </div>
   </div>
+</div>
+</div>
 
   <div class="row">
   	<div class="col-5 konten2 offset-1 ">
