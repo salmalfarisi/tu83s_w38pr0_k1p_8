@@ -56,4 +56,40 @@ class Geoffmax extends CI_Controller {
 		$this->load->view('halamanproduk', $daftar);
 		$this->load->view('template/footer');
 	}
+	
+	public function cartcheckbelanja()
+	{
+		//carasimpan warna untuk tombolnya ??? kesimpulan yang didapat : 
+		//dimana posisi terakhir membeli barang, disitulah pewarnaan tombol 
+		//mengikuti halaman terakhir yang diakses pelanggan 
+		$orderby = $this->session->userdata('orderby');
+		//Hitam : #333333
+		//Merah : #f93e4c
+		if($orderby = 'P')
+		{
+			$this->session->set_userdata('warnagender','btn-danger');
+			$cekdetail['cart'] = $this->DatabaseGeoff->cekbarang();
+			$this->load->view('template/header');
+			$this->load->view('konfirmasipembelian/ringkasanbarang');
+			$this->load->view('template/footer');
+		}
+		else
+		{
+			$this->session->set_userdata('warnagender','btn-dark');
+			$cekdetail['cart'] = $this->DatabaseGeoff->cekbarang();
+			$this->load->view('template/header');
+			$this->load->view('konfirmasipembelian/ringkasanbarang', $cekdetail);
+			$this->load->view('template/footer');
+		}
+	}
+
+	public function detailCowok()
+	{
+		$orderby = $this->session->userdata('orderby');
+		$this->session->set_userdata('warnagender','btn-dark');
+		$this->load->view('template/header');
+		$this->load->view('Detail');
+		$this->load->view('template/footer');
+
+	}
 }
