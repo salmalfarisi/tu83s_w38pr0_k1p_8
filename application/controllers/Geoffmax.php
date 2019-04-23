@@ -34,7 +34,25 @@ class Geoffmax extends CI_Controller {
 		$this->load->view('home');
 		$this->load->view('template/footer');
 	}
-	
+
+	public function beli()
+	{
+		$this->session->set_userdata('orderby','Netral');
+		$this->session->set_userdata('Judul Halaman', 'GMX- GEOFF Max Footwear');
+		$this->load->view('template/header');
+		$this->load->view('beli');
+		$this->load->view('template/footer');
+	}
+
+
+	public function  aboutus(){
+		$this->session->set_userdata('orderby','Netral');
+		$this->session->set_userdata('Judul Halaman', 'GMX- GEOFF Max Footwear');
+		$this->load->view('template/header');
+		$this->load->view('aboutus');
+		$this->load->view('template/footer');
+	}
+
 	public function produkcowok()
 	{
 		$this->session->set_userdata('orderby', 'L');
@@ -81,15 +99,5 @@ class Geoffmax extends CI_Controller {
 			$this->load->view('konfirmasipembelian/ringkasanbarang', $cekdetail);
 			$this->load->view('template/footer');
 		}
-	}
-
-	public function detailCowok()
-	{
-		$orderby = $this->session->userdata('orderby');
-		$this->session->set_userdata('warnagender','btn-dark');
-		$this->load->view('template/header');
-		$this->load->view('Detail');
-		$this->load->view('template/footer');
-
 	}
 }
