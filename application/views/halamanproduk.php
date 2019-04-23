@@ -23,13 +23,13 @@
 <div class="container">
   <div class="row">
   <?php foreach($produk as $p) { ?>
-  <div class="col-lg-3 col-md-4 mb-4">
+  <div class="col-lg-3 col-md-4 mb-4 text-center">
 	<div class="mb-4" style="width: 18rem;">
 	<!-- Pembuatan Link ke halaman detail produk sama mengeluarkan data gambar ke halaman website -->
-		<a href="#"><img class="card-img-top" src="<?php echo base_url('assets/produk/listproduk/'). $p->gambarproduk; ?>"></a>
+		<a href="<?php echo base_url('Geoffmax/detail/').$p->idproduk; ?>"><img style="width:80%; height:80%;" class="card-img-top img-responsive img-fluid" src="<?php echo base_url('assets/produk/listproduk/'). $p->gambarproduk; ?>"></a>
 		<div class="card-body text-center">
-			<a href="#"><h5 class="hurufproduk card-title"><?php echo $p->namaproduk; ?></h5></a>
-			<a href="#"><p class="hurufproduk card-text">Rp<?php echo number_format($p->harga,0,",","."); ?></p></a>
+			<a href="<?php echo base_url('Geoffmax/detail/').$p->idproduk; ?>"><h5 class="hurufproduk card-title"><?php echo $p->namaproduk; ?></h5></a>
+			<a href="<?php echo base_url('Geoffmax/detail/').$p->idproduk; ?>"><p class="hurufproduk card-text">Rp<?php echo number_format($p->harga,0,",","."); ?></p></a>
 			
 		</div>
 	</div>

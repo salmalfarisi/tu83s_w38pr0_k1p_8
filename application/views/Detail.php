@@ -17,19 +17,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		<div class="left-place">
 			<div class="img-product">
-				<img style="width: 500px;height: 500px;" src="<?php echo base_url('assets/geoff produk rinci/cowok/authentic_black_white_01.jpg')?>">
+				<?php foreach ($detail as $dp) { ?>
+				<img src="<?php echo base_url('assets/produk/listproduk/'). $dp->gambarproduk;?>">
 			</div>
 		
 		</div>
-		<form class="right-place" method="POST" action="<?php base_url ('Geoffmax/cartcheckbelanja')?>">
-			<!-- <img class="card-img-top" src="<?php echo base_url('assets/produk/listproduk/'). $p->gambarproduk; ?>">
-				<div class="card-body text-center">
-					<h5 class="card-title"><?php echo $p->namaproduk; ?></h5>
-					<p class="card-text">Rp<?php echo number_format($p->harga,0,",","."); ?></p>
-				</div> -->
-			<h1 style="font-weight: 600;">Authentic Black White</h1>
-			<h3 style="font-weight: 700;">Rp. 285,000</h3>
-			<div class="" id="ukuranaa" style="height: 100px;border-bottom: solid #C3C3C3 1px;">
+		<form class="right-place" method="POST" action="<?php echo base_url ('Geoffmax/langsungbayar/');?>">
+
+		    <input type="hidden" id="idproduk" name="idproduk" value="<?php echo $dp->idproduk; ?>">
+			<h1 style="font-weight: 600; " name="namaproduk"><?php echo $dp->namaproduk; ?></h1>
+			<input type="hidden" name="totalharga" value="<?php echo $dp->harga; ?>"" name=""><h3 style="font-weight: 700;">Rp<?php echo number_format($dp->harga,0,",","."); ?></h3>
+			<div class="" id="ukuranaa" style="height: 100px;border-bottom: solid #C3C3C3 1px;"><?php } ?>
 				<label>Pilih Ukuran</label>
 				<div class="middle">
 					<div class="girl">
@@ -103,29 +101,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<!-- <button type="submit" class="button" value="BELI"name="butATC" id="butATC" data-toggle="modal" data-target="#warning" style="width: 355px;"></button> -->
 				<input type="button" class="button" value="BELI" name="butATC" id="butATC" data-toggle="modal" data-target="#warning" style="width: 355px;">
 				<br>
-				<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboards="false" data-backdrop="static">
-				  <div class="modal-dialog modal-dialog-centered" style="width: 350px;height: 135px;" role="document">
-				    <div class="modal-content" style="background-color: black;">
-				      
-				      <div class="modal-body" style="padding: 20px 30px;">
-				      	<div class="container">
-					        <h5 class="modal-title" id="exampleModalLabel" style="color: white;font-size: 16px;font-weight: 700;text-align: center;">YEAH! Berhasil masuk keranjang...</h5>
-					        <br>
-					           	
-					   		<div class="row">
-						      	<button type="button" class="btn" style="background-color: #F93E4C;color: white;width: 310px;font-size: 14px;font-weight: 700;" data-dismiss="modal">Langsung ke Kasir</button>				      			
-						    </div>
-						    <div class="row"><h3> </h3></div>
-						    <div class="row">
-						      	<button type="button" class="btn" style="background-color: #F93E4C;color: white;width: 310px;font-size: 14px;font-weight: 700;" data-dismiss="modal">Beli yang Lainnya Juga</button>				      			
-						    </div>
-				      	</div>
-				      </div>
-				      
-				    </div>
-				  </div>
-				</div>
+				
+				
 			</div>
+
 			<div class="detail-help">
                 <a href="https://geoff-max.com/size-guide.php" class="size-button" target="_blank">
                 	<div>PANDUAN UKURAN</div>
@@ -183,4 +162,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 
 	</div>
+	<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboards="false" data-backdrop="static">
+				  <div class="modal-dialog modal-dialog-centered" style="width: 350px;height: 135px;" role="document">
+				    <div class="modal-content" style="background-color: black;">
+				      
+				      <div class="modal-body" style="padding: 20px 30px;">
+				      	<form class="right-place" method="POST" action="<?php echo base_url ('Geoffmax/langsungbayar/');?>">
+
+						    <input type="hidden" id="idproduk" name="idproduk" value="<?php echo $dp->idproduk; ?>">
+							<input type="hidden" name="namaproduk" value="<?php echo $dp->namaproduk; ?>">
+							
+				      	<div class="container">
+					        <h5 class="modal-title" id="exampleModalLabel" style="color: white;font-size: 16px;font-weight: 700;text-align: center;">YEAH! Berhasil masuk keranjang...</h5>
+					        <br>
+					           	
+					   		<div class="row">
+						      	<input   name="kecart" type="submit" class="btn" value="Langsung Ke Kasir" style="background-color: #F93E4C;color: white;width: 310px;font-size: 14px;font-weight: 700;">		      			
+						    </div>
+						    <div class="row"><h3> </h3></div>
+						    <div class="row">
+						      	<button type="button" class="btn" style="background-color: #F93E4C;color: white;width: 310px;font-size: 14px;font-weight: 700;" data-dismiss="modal">Beli yang Lainnya Juga</button>				      			
+						    </div>
+				      	</div>
+				      </form>
+				      </div>
+				      
+				    </div>
+				  </div>
+				</div>
 </body>
