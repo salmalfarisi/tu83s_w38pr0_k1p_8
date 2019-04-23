@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		  display: none;
 		}
 		.middle input[type="radio"]:checked + .box {
-		  background-color: #ffa500;
+		  background-color: #F93E4C;
 		}
 		.middle input[type="radio"]:checked + .box span {
 		  color: black;
@@ -57,12 +57,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		  font-weight: normal;
 		  color: white;
 		}
+		
+		.sizebutton{
+			background-color: #F93E4C;
+		}
 	  	
 	  </style>            
 </head>
 <body>
 	<br>
-	<div class="detail-product">
+	<div class="detail-product girls-style">
 		
 		<div class="left-place">
 			<div class="img-product">
@@ -173,7 +177,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			<div class="detail-splite" style="padding-left: 15px;">
 				<!-- <button type="submit" class="button" value="BELI"name="butATC" id="butATC" data-toggle="modal" data-target="#warning" style="width: 355px;"></button> -->
-				<input type="button" class="button" value="BELI" name="butATC" id="butATC" data-toggle="modal" data-target="#warning" style="width: 355px;">
+				<input type="button" class="button" value="BELI" name="butATC" id="butATC" data-toggle="modal" data-target="#warning" style="width: 355px; background-color: #F93E4C">
 				<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
 				  <div class="modal-dialog modal-dialog-centered" style="width: 350px;height: 135px;" role="document">
 				    <div class="modal-content" style="background-color: black;">
