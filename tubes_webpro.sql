@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2019 at 12:04 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.2.12
+-- Generation Time: Apr 23, 2019 at 06:49 AM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -91,7 +91,29 @@ INSERT INTO `produk` (`idproduk`, `namaproduk`, `jenisproduk`, `targetpembeli`, 
 (13, 'Alvy Navy White', 'Sepatu', 'P', 481201, 'SP8.jpg', 'SP8'),
 (14, 'Alvy Red White', 'Sepatu', 'P', 481866, 'SP9.jpg', 'SP9'),
 (15, 'Alvy Sky Blue', 'Sepatu', 'P', 500195, 'SP10.jpg', 'SP10'),
-(16, 'Alvy Springster', 'Sepatu', 'P', 500514, 'SP11.jpg', 'SP11');
+(16, 'Alvy Springster', 'Sepatu', 'P', 500514, 'SP11.jpg', 'SP11'),
+(17, 'Arthur Black Gum', 'Sepatu', 'L', 335000, 'SL1.jpg', 'SL1'),
+(18, 'Authentic 420 Black', 'Sepatu', 'L', 275000, 'SL2.jpg', 'SL2'),
+(19, 'Authentic 420', 'Sepatu', 'L', 275000, 'SL3.jpg', 'SL3'),
+(20, 'Authentic All Black', 'Sepatu', 'L', 295000, 'SL4.jpg', 'SL4'),
+(21, 'Authentic Black Bs White', 'Sepatu', 'L', 295000, 'SL5.jpg', 'SL5'),
+(22, 'Authentic Black Gum', 'Sepatu', 'L', 295000, 'SL6.jpg', 'SL6'),
+(23, 'Authentic Black Pizza', 'Sepatu', 'L', 295000, 'SL7.jpg', 'SL7'),
+(24, 'Authentic Black White', 'Sepatu', 'L', 285000, 'SL8.jpg', 'SL8'),
+(25, 'Authentic Brown Black', 'Sepatu', 'L', 275000, 'SL9.jpg', 'SL9'),
+(26, 'Authentic Ch Tan', 'Sepatu', 'L', 275000, 'SL10.jpg', 'SL10'),
+(27, 'Authentic Drac Black', 'Sepatu', 'L', 210000, 'SL11.jpg', 'SL11'),
+(28, 'Authentic Drac Grey', 'Sepatu', 'L', 210000, 'SL12.jpg', 'SL12'),
+(29, 'Authentic Leather All Black', 'Sepatu', 'L', 275000, 'SL13.jpg', 'SL13'),
+(30, 'Authentic Leather Black Gum', 'Sepatu', 'L', 275000, 'SL14.jpg', 'SL14'),
+(31, 'Authentic Maroon Gum', 'Sepatu', 'L', 295000, 'SL15.jpg', 'SL15'),
+(32, 'Authentic Maroon White', 'Sepatu', 'L', 285000, 'SL16.jpg', 'SL16'),
+(33, 'Authentic Navy Black', 'Sepatu', 'L', 295000, 'SL17.jpg', 'SL17'),
+(34, 'Authentic Navy Gum', 'Sepatu', 'L', 295000, 'SL18.jpg', 'SL18'),
+(35, 'Alvy Woofie', 'Sepatu', 'P', 285000, 'SP12.jpg', 'SP12'),
+(36, 'Cindy Blue White', 'Sepatu', 'P', 285000, 'SP13.jpg', 'SP13'),
+(37, 'Cindy Light Grey', 'Sepatu', 'P', 285000, 'SP14.jpg', 'SP14'),
+(38, 'Cindy Red White', 'Sepatu', 'P', 285000, 'SP15.jpg', 'SP15');
 
 --
 -- Indexes for dumped tables
@@ -142,7 +164,7 @@ ALTER TABLE `pemesanan`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `idproduk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idproduk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- Constraints for dumped tables
