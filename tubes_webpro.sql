@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2019 at 06:49 AM
+-- Generation Time: Apr 23, 2019 at 07:54 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -113,7 +113,16 @@ INSERT INTO `produk` (`idproduk`, `namaproduk`, `jenisproduk`, `targetpembeli`, 
 (35, 'Alvy Woofie', 'Sepatu', 'P', 285000, 'SP12.jpg', 'SP12'),
 (36, 'Cindy Blue White', 'Sepatu', 'P', 285000, 'SP13.jpg', 'SP13'),
 (37, 'Cindy Light Grey', 'Sepatu', 'P', 285000, 'SP14.jpg', 'SP14'),
-(38, 'Cindy Red White', 'Sepatu', 'P', 285000, 'SP15.jpg', 'SP15');
+(38, 'Cindy Red White', 'Sepatu', 'P', 285000, 'SP15.jpg', 'SP15'),
+(39, 'Beachstripe Orange', 'Sendal', 'L', 75000, 'JL1.jpg', 'JL1'),
+(40, 'Black Rainbow', 'Sendal', 'L', 75000, 'JL2.jpg', 'JL2'),
+(41, 'Blue Ocean Navy', 'Sendal', 'L', 75000, 'JL3.jpg', 'JL3'),
+(42, 'Dark Pizza', 'Sendal', 'L', 75000, 'JL4.jpg', 'JL4'),
+(43, 'Dimension', 'Sendal', 'L', 75000, 'JL5.jpg', 'JL5'),
+(44, 'Etnical Navu', 'Sendal', 'L', 75000, 'JL6.jpg', 'JL6'),
+(45, 'Forest Green', 'Sendal', 'L', 75000, 'JL7.jpg', 'JL7'),
+(46, 'GMX Down Over', 'Sendal', 'L', 75000, 'JL8.jpg', 'JL8'),
+(47, 'Blue Ocean Tosca', 'Sepatu', 'L', 75000, 'JL9.jpg', 'JL9');
 
 --
 -- Indexes for dumped tables
@@ -164,7 +173,7 @@ ALTER TABLE `pemesanan`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `idproduk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `idproduk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- Constraints for dumped tables
