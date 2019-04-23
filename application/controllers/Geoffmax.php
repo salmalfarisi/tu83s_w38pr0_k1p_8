@@ -34,25 +34,7 @@ class Geoffmax extends CI_Controller {
 		$this->load->view('home');
 		$this->load->view('template/footer');
 	}
-
-	public function beli()
-	{
-		$this->session->set_userdata('orderby','Netral');
-		$this->session->set_userdata('Judul Halaman', 'GMX- GEOFF Max Footwear');
-		$this->load->view('template/header');
-		$this->load->view('beli');
-		$this->load->view('template/footer');
-	}
-
-
-	public function  aboutus(){
-		$this->session->set_userdata('orderby','Netral');
-		$this->session->set_userdata('Judul Halaman', 'GMX- GEOFF Max Footwear');
-		$this->load->view('template/header');
-		$this->load->view('aboutus');
-		$this->load->view('template/footer');
-	}
-
+	
 	public function produkcowok()
 	{
 		$this->session->set_userdata('orderby', 'L');
@@ -75,7 +57,36 @@ class Geoffmax extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
-	public function cartcheckbelanja()
+	public function detail($idproduk)
+	{
+		$jeniskelamin = $this->session->userdata('orderby');
+		if($jeniskelamin = 'L')
+		{
+			$this->detailcowok($idproduk);
+		}
+		else
+		{
+			$this->detailcewek($idproduk);
+		}
+	}
+	
+	public function detailcowok($idproduk)
+	{
+		$deskripsi['detail'] = $this->DatabaseGeoff->detailbarang($idproduk)->result();
+		$this->load->view('template/header');
+		$this->load->view('Detail', $deskripsi);
+		$this->load->view('template/footer');
+	}
+	
+	public function detailcewek($idproduk)
+	{
+		$deskripsi['detail'] = $this->DatabaseGeoff->detailbarang($idproduk)->result();
+		$this->load->view('template/header');
+		$this->load->view('DetailCewek', $deskripsi);
+		$this->load->view('template/footer');		
+	}
+	
+	/*public function cartcheckbelanja()
 	{
 		//carasimpan warna untuk tombolnya ??? kesimpulan yang didapat : 
 		//dimana posisi terakhir membeli barang, disitulah pewarnaan tombol 
@@ -99,5 +110,57 @@ class Geoffmax extends CI_Controller {
 			$this->load->view('konfirmasipembelian/ringkasanbarang', $cekdetail);
 			$this->load->view('template/footer');
 		}
+	}*/
+	
+	/*public function cartcheckbelanja()
+	{
+		/*radio
+		idproduk
+		namaproduk
+		ukuransepatu
+		qty*//*
+		$data = array
+		(
+			'idproduk' => $this->input->post('idproduk');
+			'ukuranproduk' => $this->input->post('radio');
+			'namaproduk' => $this->input->post('namaproduk');
+			'jumlahproduk' => $this->input->post('qty');
+			'jadipesan' => 'Belum Bayar'
+		);
+		
+		$inputkedata = $this->DatabaseGeoff->addcart($data);
+		$this->input->post->
+	}*/
+	
+	public function langsungbayar()
+	{	
+		$totalharga = array('totalbayar' => $this->input->post('totalharga'));
+
+		$data = array
+		(
+			'idproduk' => $this->input->post('idproduk'),
+			'ukuranproduk' => $this->input->post('radio'),
+			'namaproduk' => $this->input->post('namaproduk'),
+			'jumlahproduk' => $this->input->post('qty'),
+			'jadipesan' => 'N'
+		);
+		
+		$masukkantotalharga = $this->DatabaseGeoff->masukkanharga($totalharga);
+		$inputkedata = $this->DatabaseGeoff->addcart($data);
+		//$caritotalbayar = $this->DatabaseGeoff->shownopemesanan()->totalbayar;
+		//$showtotalbayar = $this->session->set_userdata('totalharga', $caritotalbayar);
+		// $showpemesanan2 = $this->session->userdata('nomorpemesanan');
+		//$data['tampilkandata'] = $this->DatabaseGeoff->showcart();
+		//$data['tampilkanproduk'] = $this->DatabaseGeoff->tampilkanproduk();
+		$this->load->view('template/header');
+		$this->load->view('konfirmasipembelian/ringkasanbarang', $data);
+		$this->load->view('template/footer');
+	}
+
+	public function identitasdatadiri()
+	{
+		$this->load->view('template/header');
+		$this->load->view('datadiri');
+		$this->load->view('template/footer');
 	}
 }
