@@ -1,0 +1,359 @@
+    .middle {
+      width: 100px;
+      margin: 0px;
+    }
+    .middle input[type="radio"] {
+      display: none;
+    }
+    .middle input[type="radio"]:checked + .box {
+      background-color: #ffa500;
+    }
+
+    .middle input[type="radio"]:checked + .box span {
+      color: black;
+    }
+    
+    .middle .box {
+      width: 41px;
+      height: 41px;
+      float: right;
+      background-color: white;
+      transition: all 100ms ease;
+      will-change: transition;
+      display: inline-block;
+      text-align: right;
+      cursor: pointer;
+      position: relative;
+      border: solid #333333 2px;
+      
+      font-size: 21px;
+      
+      
+    }
+    .middle .box span {
+      position: absolute;
+      transform: translate(0,-5px);
+      left: 0;
+      right: 0;
+      font-size: 1.5em;
+      user-select: none;
+    }
+    .middle .box span:before {
+      font-size: 1.2em;
+      display: block;
+      transform: translateY(-80px);
+      opacity: 0;
+      font-weight: normal;
+      color: white;
+    }
+    .middlec {
+      width: 100px;
+      margin: 0px;
+    }
+    .middlec input[type="radio"] {
+      display: none;
+    }
+    .middlec input[type="radio"]:checked + .box {
+      background-color: #F93E4C;
+    }
+
+    .middlec input[type="radio"]:checked + .box span {
+      color: black;
+    }
+    .middlec .box {
+      width: 41px;
+      height: 41px;
+      float: right;
+      background-color: white;
+      transition: all 100ms ease;
+      will-change: transition;
+      display: inline-block;
+      text-align: right;
+      cursor: pointer;
+      position: relative;
+      border: solid #333333 2px;
+      
+      font-size: 21px;
+      
+      
+    }
+    .middlec .box span {
+      position: absolute;
+      transform: translate(0,-5px);
+      left: 0;
+      right: 0;
+      font-size: 1.5em;
+      user-select: none;
+    }
+    .middlec .box span:before {
+      font-size: 1.2em;
+      display: block;
+      transform: translateY(-80px);
+      opacity: 0;
+      font-weight: normal;
+      color: white;
+    }
+    
+    .detail-help .caber,
+.detail-help .size-button {
+  display: block;
+  background: #333;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-transition: all 0.2s ease-out 0s;
+  -moz-transition: all 0.2s ease-out 0s;
+  -ms-transition: all 0.2s ease-out 0s;
+  -o-transition: all 0.2s ease-out 0s;
+  transition: all 0.2s ease-out 0s;
+}
+.detail-help .caber div,
+.detail-help .size-button div {
+  display: block;
+  padding: 16px 10px 13px 10px;
+  font-size: 19px;
+  font-weight: 900;
+  line-height: 21px;
+}
+.detail-help .caber:hover,
+.detail-help .size-button:hover {
+  background: #f60;
+}
+.detail-help .size-button {
+  float: left;
+  width: 61%;
+}
+.detail-help .caber {
+  float: right;
+  width: 35%;
+}
+.detail-help b {
+  display: block;
+  clear: both;
+  padding: 15px 0;
+  font-weight: normal;
+}
+.detail-help .line-button {
+  display: table;
+  margin: auto;
+  padding: 5px 0 5px 55px;
+  background: url(https://www.geoff-max.com/assets/image/line-logo.png) left center no-repeat #3ace01;
+  border: solid #3ace01;
+  border-width: 5px 20px 5px 20px;
+  color: #fff;
+  font-size: 21px;
+  font-weight: 700;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+  -webkit-transition: all 0.2s ease-out 0s;
+  -moz-transition: all 0.2s ease-out 0s;
+  -ms-transition: all 0.2s ease-out 0s;
+  -o-transition: all 0.2s ease-out 0s;
+  transition: all 0.2s ease-out 0s;
+}
+.detail-help .line-button:hover {
+  border-color: #30ac00;
+  background-color: #30ac00;
+}
+
+.detail-product {
+  display: table;
+  margin: auto;
+  width: 980px;
+}
+.detail-product .left-place {
+  float: left;
+  width: 500px;
+  display: table;
+  margin-left: 30px;
+  padding-bottom: 35px;
+}
+.detail-product .right-place {
+  float: right;
+  width: 380px;
+  display: table;
+  margin-right: 30px;
+  padding: 0;
+  padding-bottom: 20px;
+}
+.detail-product .right-place h1,
+.detail-product .right-place h2,
+.detail-product .right-place h3,
+.detail-product .right-place h4 {
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+  display: block;
+}
+.detail-product .right-place h1 {
+  font-size: 26px;
+  font-weight: 600;
+}
+.detail-product .right-place h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.detail-product .right-place h3 {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+.detail-product .right-place h3 span {
+  display: inline-block;
+  font-size: 16px;
+  color: #EF4637;
+  text-decoration: line-through;
+  margin-left: 10px;
+}
+.detail-product .right-place h4 {
+  font-size: 14px;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+.detail-product .right-place .field {
+  display: table;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 5px;
+  padding-bottom: 10px;
+  width: 100%;
+}
+.detail-product .right-place .field.warning {
+  border-bottom: 2px solid #ff3737;
+}
+.detail-product .right-place .field label {
+  display: inline-block;
+  width: 140px;
+  padding: 7px 0 5px 0;
+}
+.detail-product .right-place .field label .size-button {
+  display: none;
+  font-style: normal;
+  padding: 1px 10px;
+  background: #ff6600;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-transition: all 0.2s ease-out 0s;
+  -moz-transition: all 0.2s ease-out 0s;
+  -ms-transition: all 0.2s ease-out 0s;
+  -o-transition: all 0.2s ease-out 0s;
+  transition: all 0.2s ease-out 0s;
+}
+.detail-product .right-place .field label .size-button:hover {
+  background: #333;
+  cursor: pointer;
+}
+.detail-product .right-place .detail-splite {
+  display: block;
+  padding-left: 65px;
+  margin-top: 20px;
+}
+.detail-product .right-place .detail-splite .button {
+  background: #ff6600;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  outline: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-transition: all 0.2s ease-out 0s;
+  -moz-transition: all 0.2s ease-out 0s;
+  -ms-transition: all 0.2s ease-out 0s;
+  -o-transition: all 0.2s ease-out 0s;
+  transition: all 0.2s ease-out 0s;
+}
+.detail-product .right-place .detail-splite .button:hover {
+  background: #ea6003;
+}
+
+.detail-bottom {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  width: 90%;
+  max-width: 980px;
+  box-sizing: border-box;
+  background: #f5f5f5;
+  overflow: hidden;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+.detail-bottom .hide {
+  display: none !important;
+}
+.detail-bottom .debot-nav {
+  display: table;
+  width: 100%;
+  box-sizing: border-box;
+  background: #e5e5e5;
+  margin: 0;
+  padding: 0;
+}
+.detail-bottom .debot-nav li {
+  display: block;
+  float: left;
+  padding: 10px 15px;
+  margin: 0;
+  list-style: none;
+  border-right: 1px solid #f5f5f5;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease-out 0s;
+  -moz-transition: all 0.2s ease-out 0s;
+  -ms-transition: all 0.2s ease-out 0s;
+  -o-transition: all 0.2s ease-out 0s;
+  transition: all 0.2s ease-out 0s;
+}
+.detail-bottom .debot-nav li.current {
+  background: #f5f5f5;
+  color: #f60;
+  cursor: default;
+}
+.detail-bottom .debot-nav li:hover {
+  color: #f60;
+}
+.girls-style .product-list li.items a:hover label::after {
+  border-bottom-color: #F93E4C !important;
+}
+.girls-style .detail-product .right-place .button,
+.girls-style .detail-help .caber:hover,
+.girls-style .detail-help .size-button:hover,
+.girls-style .order-option .container a,
+.girls-style .komentar-option .container a,
+.girls-style .new-checkout .nc-wrapped .nc-button div a,
+.girls-style .thanks-page .step .konfirm {
+  background: #F93E4C !important;
+}
+.girls-style .detail-bottom .debot-nav li:hover,
+.girls-style .detail-bottom .debot-nav li.current,
+.girls-style .detail-bottom .debot-comment .more:hover {
+  color: #F93E4C;
+}
