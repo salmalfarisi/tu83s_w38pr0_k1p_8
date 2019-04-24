@@ -132,10 +132,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="carousel slide col-1"	data-ride="carousel" data-interval="2000">
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<a href="<?php echo base_url('Geoffmax/index');?>"><img class="img-crs" src="<?php echo base_url('assets/contoh home/pic/icon1.png')?>"></a>
+					<a href="<?php echo base_url('testing2/index');?>"><img class="img-crs" src="<?php echo base_url('assets/contoh home/pic/icon1.png')?>"></a>
 				</div>
 				<div class="carousel-item" style="height: 50%, width:50%">
-					<a href="<?php echo base_url('Geoffmax/index');?>"><img class="img-crs" src="<?php echo base_url('assets/contoh home/pic/icon2.png')?>" ></a>
+					<a href="<?php echo base_url('testing2/index');?>"><img class="img-crs" src="<?php echo base_url('assets/contoh home/pic/icon2.png')?>" ></a>
 
 				</div>
 			</div>
@@ -150,7 +150,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-2 offset-6 a1"><b>Browse By Gender</b></div>
 	</div>
 	<div class="row headers">
-		<div class="col-1 offset-3"><a class="hurufproduk " href="<?php echo base_url('Geoffmax/produkcowok');?>">BOY</a></div>
+		<div class="col-1 offset-3"><a class="hurufproduk " href="<?php echo base_url('testing2/produkcowok');?>">BOY</a></div>
 		<div class="col-1 offset-2"><img src="<?php echo base_url('assets/contoh home/pic/mid.png')?>" style="height: 80%"></div>
-		<div class="col-1 offset-2"><a class="hurufproduk " href="<?php echo base_url('Geoffmax/produkcewek');?>">GIRL</a></div>
+		<div class="col-1 offset-2"><a class="hurufproduk " href="<?php echo base_url('testing2/produkcewek');?>">GIRL</a></div>
 	</div> 
