@@ -137,25 +137,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    			<div class="status">
 		    				
                         </div>
+                        <div class="detail-bottom">
+			<ul class="debot-nav">
+		        <li class="debot-nav-product current">Produk Lainnya</li>
+		       
+		    </ul>
+		    <div class="debot-lainnya">
+		    	<ul class="product-list">
+		    			<div class="status">
+		    				
+                        </div>
                         <a href="#" class="">
-                            <!-- <div class="pict">
-                                <img src="<?php echo base_url('assets/geoff produk rinci/cowok/brown6.jpg')?>">
-                            </div>
-                            <label><strong>Authentic Brown</strong></label>
-                            <div class="price">Rp. 425,000</div>
-                            <div class="size"></div> -->
-                            <?php foreach($produk as $p) { ?>
+							<div class="row">
+                            <?php foreach($randomproduk as $rp) { ?>
 							  <div class="col-lg-3 col-md-4 mb-4">
-								<div class="card" style="width: 18rem;">
-									<img class="card-img-top" src="<?php echo base_url('assets/produk/listproduk/'). $p->gambarproduk; ?>">
+								<div class="card" style="width: 10rem;">
+									<a href="<?php echo base_url('testing2/detail/').$rp->idproduk; ?>"><img class="card-img-top" src="<?php echo base_url('assets/produk/listproduk/'). $rp->gambarproduk; ?>"></a>
 									<div class="card-body text-center">
-										<h5 class="card-title"><?php echo $p->namaproduk; ?></h5>
-										<p class="card-text">Rp<?php echo number_format($p->harga,0,",","."); ?></p>
+										<a href="<?php echo base_url('testing2/detail/').$rp->idproduk; ?>"><h5 class="hurufproduk card-title"><?php echo $rp->namaproduk; ?></h5></a>
+										<a href="<?php echo base_url('testing2/detail/').$rp->idproduk; ?>"><p class="hurufproduk card-text">Rp<?php echo number_format($rp->harga,0,",","."); ?></p></a>
 									</div>
 								</div>
 							  </div>
 							  <?php } ?>
+							 </div>
                         </a>
+		    	</ul>
+		    </div>
+		</div>
                     </li>
 		    	</ul>
 		    </div>
