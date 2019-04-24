@@ -42,52 +42,35 @@ class DatabaseGeoff extends CI_Model
 	
 	public function addcart($data)
 	{
-		$this->db->select('*');
-		$this->db->from('cart');
-		$this->db->join('produk','cart.idproduk = produk.idproduk','RIGHT OUTER');
 		$query = $this->db->insert('cart', $data);
 		return $query;
 	}
-
-	public function masukkanharga($totalharga)
-	{
-		$this->db->select('*');
-		$this->db->from('pemesanan');
-		//$this->db->join('cart','pemesanan.nopemesanan = cart.nopemesanan', 'LEFT OUTER');
-		$query = $this->db->insert('pemesanan',$totalharga);
+	
+	public function insertnama($data)
+	{	
+		$query = $this->db->insert('pemesanan', $data);
 		return $query;
 	}
-
-	public function shownopemesanan()
+	
+	public function showrandomcewek($jeniskelamin)
 	{
 		$this->db->select('*');
-		$this->db->from('pemesanan');
-		$this->db->order_by('nopemesanan','DESC');
+		$this->db->from('produk');
+		$this->db->where('targetpembeli', $jeniskelamin);
+		$this->db->order_by('idproduk','RANDOM');
+		$this->db->limit('3');
 		$query = $this->db->get();
-		return $query->row();
-		//return $query=$this->db->query('SELECT nopemesanan FROM pemesanan order by nopemesanan desc limit 1');
-		//return $query;
-
-
+		return $query->result();
 	}
-
-	public function showcart()
+	
+	public function showrandomcowok($jeniskelamin)
 	{
-		// $this->db->select('*');
-		// $this->db->from('pemesanan');
-		// $this->db->order_by('nopemesanan', 'DESC');
-		// $query = $this->db->get();
-		// return $query->result();
-		return $query=$this->db->query('SELECT nopemesanan FROM pemesanan order by nopemesanan desc');
-	}
-
-	public function tampilkanproduk()
-	{
-		$this->db->select('','');
-		$this->db->from('cart');
-		//$this->db->join('produk', 'cart.idproduk = produk.idproduk', 'LEFT OUTER');
-		//$this->db->group_by('produk.idproduk');
-		$this->db->get();
-		return $query->results();
+		$this->db->select('*');
+		$this->db->from('produk');
+		$this->db->where('targetpembeli', $jeniskelamin);
+		$this->db->order_by('idproduk','RANDOM');
+		$this->db->limit('3');
+		$query = $this->db->get();
+		return $query->result();
 	}
 }
