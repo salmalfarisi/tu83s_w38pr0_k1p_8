@@ -18,11 +18,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="left-place">
 			<div class="img-product">
 				<?php foreach ($detail as $dp) { ?>
-				<img src="<?php echo base_url('assets/produk/listproduk/'). $dp->gambarproduk;?>">
+				<img style="width: 500px;height: 500px" src="<?php echo base_url('assets/produk/listproduk/'). $dp->gambarproduk;?>">
 			</div>
 		
 		</div>
-		<form class="right-place" method="POST" action="<?php echo base_url ('Geoffmax/langsungbayar/');?>">
+		<form class="right-place" method="POST" action="<?php echo base_url ('testing2/langsungbayar/');?>">
 
 		    <input type="hidden" id="idproduk" name="idproduk" value="<?php echo $dp->idproduk; ?>">
 			<h1 style="font-weight: 600; " name="namaproduk"><?php echo $dp->namaproduk; ?></h1>
@@ -106,10 +106,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 
 			<div class="detail-help">
-                <a href="https://geoff-max.com/size-guide.php" class="size-button" target="_blank">
+                <a href="#" class="size-button" target="_blank">
                 	<div>PANDUAN UKURAN</div>
                 </a>
-                <a href="https://geoff-max.com/cara-beli" class="caber">
+                <a href="<?php echo base_url('testing2/beli')?>" class="caber">
                 	<div style="font-size: 18px;">CARA BELI</div>
                 </a>
                 <b style="text-align: center;">Butuh bantuan? Line kami:</b>
@@ -127,17 +127,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
 		</form>
 		<div class="detail-bottom">
-			<ul class="debot-nav">
-		        <li class="debot-nav-product current">Produk Lainnya</li>
-		       
-		    </ul>
-		    <div class="debot-lainnya">
-		    	<ul class="product-list">
-		    		<li class="items">
-		    			<div class="status">
-		    				
-                        </div>
-                        <div class="detail-bottom">
 			<ul class="debot-nav">
 		        <li class="debot-nav-product current">Produk Lainnya</li>
 		       
@@ -165,10 +154,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    	</ul>
 		    </div>
 		</div>
-                    </li>
-		    	</ul>
-		    </div>
-		</div>
 
 	</div>
 	<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboards="false" data-backdrop="static">
@@ -176,7 +161,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				    <div class="modal-content" style="background-color: black;">
 				      
 				      <div class="modal-body" style="padding: 20px 30px;">
-				      	<form class="right-place" method="POST" action="<?php echo base_url ('Geoffmax/langsungbayar/');?>">
+				      	<form class="right-place" method="POST" action="<?php echo base_url ('testing2/langsungbayar/');?>">
 
 						    <input type="hidden" id="idproduk" name="idproduk" value="<?php echo $dp->idproduk; ?>">
 							<input type="hidden" name="namaproduk" value="<?php echo $dp->namaproduk; ?>">
