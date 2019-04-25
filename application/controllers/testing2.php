@@ -32,7 +32,8 @@ class testing2 extends CI_Controller {
 		$anonymouspelanggan = random_string('alpha', 10);		
 		$data = 
 		[
-			"namasementara" => $anonymouspelanggan
+			"namasementara" => $anonymouspelanggan,
+			"totalbayar" => '0'
 		];
 		$this->DatabaseGeoff->insertnama($data);
 		$callnama = $this->session->set_userdata('namapelanggan', $anonymouspelanggan);
@@ -75,19 +76,27 @@ class testing2 extends CI_Controller {
 	
 	public function detail($idproduk)
 	{
+		$this->session->set_userdata('idproduk', $idproduk);
+		$panggilproduk = $this->DatabaseGeoff->panggilproduk($idproduk);
+		$this->session->set_userdata($panggilproduk);
 		$jeniskelamin = $this->session->userdata('orderby');
 		if($jeniskelamin = 'L')
 		{
-			$this->detailcowok($idproduk);
+			//redirect('testing2/detailcowok($idproduk)');
+			$this->session->set_userdata('warnagender','btn-dark');
+			redirect('testing2/detailcowok');
 		}
-		else
+		if ($jeniskelamin = 'P')
 		{
-			$this->detailcewek($idproduk);
+			//redirect('testing2/detailcowok($idproduk)');
+			$this->session->set_userdata('warnagender','btn-danger');
+			redirect('testing2/detailcewek'($idproduk));
 		}
 	}
 	
-	public function detailcowok($idproduk)
+	public function detailcowok()
 	{
+		$idproduk = $this->session->userdata('idproduk');
 		$deskripsi['detail'] = $this->DatabaseGeoff->detailbarang($idproduk)->result();
 		$jeniskelamin = $this->session->userdata('orderby');
 		$deskripsi['randomproduk'] = $this->DatabaseGeoff->showrandomcowok($jeniskelamin);
@@ -96,8 +105,9 @@ class testing2 extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
-	public function detailcewek($idproduk)
+	public function detailcewek()
 	{
+		$idproduk = $this->session->userdata('idproduk');
 		$deskripsi['detail'] = $this->DatabaseGeoff->detailbarang($idproduk)->result();
 		$jeniskelamin = $this->session->userdata('orderby');
 		$deskripsi['randomproduk'] = $this->DatabaseGeoff->showrandomcewek($jeniskelamin);
@@ -106,68 +116,45 @@ class testing2 extends CI_Controller {
 		$this->load->view('template/footer');		
 	}
 	
-	/*public function cartcheckbelanja()
+	public function tambahkedalamkeranjang()
 	{
-		//carasimpan warna untuk tombolnya ??? kesimpulan yang didapat : 
-		//dimana posisi terakhir membeli barang, disitulah pewarnaan tombol 
-		//mengikuti halaman terakhir yang diakses pelanggan 
-		$orderby = $this->session->userdata('orderby');
-		//Hitam : #333333
-		//Merah : #f93e4c
-		if($orderby = 'P')
-		{
-			$this->session->set_userdata('warnagender','btn-danger');
-			$cekdetail['cart'] = $this->DatabaseGeoff->cekbarang();
-			$this->load->view('template/header');
-			$this->load->view('konfirmasipembelian/ringkasanbarang');
-			$this->load->view('template/footer');
-		}
-		else
-		{
-			$this->session->set_userdata('warnagender','btn-dark');
-			$cekdetail['cart'] = $this->DatabaseGeoff->cekbarang();
-			$this->load->view('template/header');
-			$this->load->view('konfirmasipembelian/ringkasanbarang', $cekdetail);
-			$this->load->view('template/footer');
-		}
-	}*/
-	
-	/*public function cartcheckbelanja()
-	{
-		/*radio
-		idproduk
-		namaproduk
-		ukuransepatu
-		qty*//*
-		$data = array
-		(
-			'idproduk' => $this->input->post('idproduk');
-			'ukuranproduk' => $this->input->post('radio');
-			'namaproduk' => $this->input->post('namaproduk');
-			'jumlahproduk' => $this->input->post('qty');
-			'jadipesan' => 'Belum Bayar'
-		);
-		
-		$inputkedata = $this->DatabaseGeoff->addcart($data);
-		$this->input->post->
-	}*/
-	
-	/*
-	public function langsungbayar()
-	{	
-		/*$data = array
-		(
+		$nama= $this->session->userdata('namapelanggan');
+		$carinama = $this->DatabaseGeoff->carinamapelanggan($nama)->nopemesanan;
+		$data = array(
 			'idproduk' => $this->input->post('idproduk'),
-			'ukuranproduk' => $this->input->post('radio'),
 			'namaproduk' => $this->input->post('namaproduk'),
 			'jumlahproduk' => $this->input->post('qty'),
-			'jadipesan' => 'Belum Bayar'
+			'ukuranproduk' => $this->input->post('radio'),
+			'totalhargaproduk' => $this->input->post('hasilproduk'),
+			'jadipesan' => 'N',
+			'nopemesanan' => $carinama
 		);
 		
-		$inputkedata = $this->DatabaseGeoff->addcart($data);
+		$totalbayar = $this->session->userdata('totalbayar');
+		$produkyangditambah = $this->input->post('hasilproduk');
+		$hasilpenjumlahan = $totalbayar + $produkyangditambah;
+		
+		$this->DatabaseGeoff->addcart($data);	
+		
+		$masukkanharga = ["totalbayar" => $hasilpenjumlahan];
+		$this->DatabaseGeoff->masukkantotalbayar($masukkanharga);
+		
+		$this->session->set_userdata('totalbayar', $hasilpenjumlahan);
+		
+		redirect('testing2/panggilcart');
+	}
+	
+	public function hapusbarangorderan($idpemesanan)
+	{
+			$this->DatabaseGeoff->hapusbarangorderan($idpemesanan);
+			redirect('testing2/panggilcart');
+	}
+	
+	public function panggilcart()
+	{
+		$cart['cart'] = $this->DatabaseGeoff->showcart();
 		$this->load->view('template/header');
-		$this->load->view('konfirmasipembelian/ringkasanbarang', $data);
+		$this->load->view('konfirmasipembelian/ringkasanbarang', $cart);
 		$this->load->view('template/footer');
 	}
-	*/
 }
