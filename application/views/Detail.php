@@ -13,6 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 	<br>
+	<!--<div class="detail-product girls-style">-->
 	<div class="detail-product">
 		
 		<div class="left-place">
@@ -28,10 +29,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<input type="hidden" id="namaproduk" name="namaproduk" value="<?php echo $this->session->userdata('namaproduk'); ?>">
 			<h1 style="font-weight: 600; "><?php echo $this->session->userdata('namaproduk'); ?></h1>
 			<input type="hidden" id="hargaproduk" name="totalharga" value="<?php echo $this->session->userdata('harga'); ?>" name=""><h3 style="font-weight: 700;">Rp<?php echo number_format($this->session->userdata('harga'),0,",","."); ?></h3>
+			
 			<div class="" id="ukuranaa" style="height: 100px;border-bottom: solid #C3C3C3 1px;"><?php } ?>
 				<label>Pilih Ukuran</label>
-				<div class="middle">
-					<div class="girl">
+				<?php $gender = $this->session->userdata('orderby');?>
+				<?php if ($gender === 'P'): ?>
+					<div class="middlec">
+				<?php elseif ($gender === 'L'): ?>
+					<div class="middle">
+				<?php endif; ?>
 						<div style="transform: translate(180px,-30px);">
 							<label >
 							  <input type="radio" name="radio" value="37" checked="" />
@@ -80,7 +86,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							  </div>
 							</label>
 					  	</div>
-					</div>
 					
 									  
 				</div>
@@ -99,8 +104,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 			
 			<div class="detail-splite" style="padding-left: 15px;">
-				<!-- <button type="submit" class="button" value="BELI"name="butATC" id="butATC" data-toggle="modal" data-target="#warning" style="width: 355px;"></button> -->
-				<button onclick="totalhargaproduk()" type="button" class="button" value="BELI" name="butATC" id="butATC" data-toggle="modal" data-target="#warning" style="width: 355px;">BELI</button>
+				<?php $gender = $this->session->userdata('orderby');?>
+				<?php if ($gender === 'P'): ?>
+					<button onclick="totalhargaproduk()" type="button" class="button" value="BELI" name="butATC" id="butATC" data-toggle="modal" data-target="#warningcewek" style="width: 355px; background-color: #F93E4C;">BELI</button>
+				<?php elseif ($gender === 'L'): ?>
+					<button onclick="totalhargaproduk()" type="button" class="button" value="BELI" name="butATC" id="butATC" data-toggle="modal" data-target="#warning" style="width: 355px;">BELI</button>
+				<?php endif; ?>
 				<br>
 				
 				
@@ -126,6 +135,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="desc-4">Insole : Jersey Foam</div>
                 <div class="desc-5">Construction : Stitch Down</div>
             </div>
+			
+				<div class="modal fade" id="warningcewek" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboards="false" data-backdrop="static">
+				  <div class="modal-dialog modal-dialog-centered" style="width: 350px;height: 135px;" role="document">
+				    <div class="modal-content" style="background-color: black;">
+				      
+				      <div class="modal-body" style="padding: 20px 30px;">
+				      	<div class="container">
+					        <h5 class="modal-title" id="exampleModalLabel" style="color: white;font-size: 16px;font-weight: 700;text-align: center;">YEAH! Berhasil masuk keranjang...</h5>
+					        <br>
+					           	
+					   		<div class="row">
+						      	<button type="button" class="btn" style="background-color: #F93E4C;color: white;width: 310px;font-size: 14px;font-weight: 700;" data-dismiss="modal">Langsung ke Kasir</button>				      			
+						    </div>
+						    <div class="row"><h3> </h3></div>
+						    <div class="row">
+						      	<button type="button" class="btn" style="background-color: #F93E4C;color: white;width: 310px;font-size: 14px;font-weight: 700;" data-dismiss="modal">Beli yang Lainnya Juga</button>				      			
+						    </div>
+				      	</div>
+				      </div>
+				      
+				    </div>
+				  </div>
+				</div>
+				
 			<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboards="false" data-backdrop="static">
 				  <div class="modal-dialog modal-dialog-centered" style="width: 350px;height: 135px;" role="document">
 				    <div class="modal-content" style="background-color: black;">
@@ -137,12 +170,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					        <br>
 					           	
 					   		<div class="row">
-						      	<input   name="kecart" type="submit" class="btn" value="Langsung Ke Kasir" style="background-color: #F93E4C;color: white;width: 310px;font-size: 14px;font-weight: 700;">		      			
+						      	<input   name="kecart" type="submit" class="btn" value="Langsung Ke Kasir" style=" background : #ff6600; color: white;width: 310px;font-size: 14px;font-weight: 700;">		      			
 								<input type="hidden" name="hasilproduk" id="test" style="background: white;" readonly>
 						    </div>
 						    <div class="row"><h3> </h3></div>
 						    <div class="row">
-						      	<button type="button" class="btn" style="background-color: #F93E4C;color: white;width: 310px;font-size: 14px;font-weight: 700;" data-dismiss="modal">Beli yang Lainnya Juga</button>				      			
+						      	<button type="button" class="btn" style="background : #ff6600;color: white;width: 310px;font-size: 14px;font-weight: 700;" data-dismiss="modal">Beli yang Lainnya Juga</button>				      			
 						    </div>
 				      	</div>
 				      </form>
