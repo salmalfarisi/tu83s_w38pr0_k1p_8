@@ -34,10 +34,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<label>Pilih Ukuran</label>
 				<?php $gender = $this->session->userdata('orderby');?>
 				<?php if ($gender === 'P'): ?>
-					<div class="middlec">
+					<div id="ukurannya" class="middlec">
 				<?php elseif ($gender === 'L'): ?>
-					<div class="middle">
-				<?php endif; ?>
+					<div id="ukurannya" class="middle">
+				<?php endif;?>
+				
+				<!--<div class="<?php echo $this->session->userdata('panggilclassdetail')?>">-->
 						<div style="transform: translate(180px,-30px);">
 							<label >
 							  <input type="radio" name="radio" value="37" checked="" />
@@ -85,9 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							    <span>42</span>
 							  </div>
 							</label>
-					  	</div>
-					
-									  
+					  	</div>		  
 				</div>
 			
 			</div>
@@ -141,7 +141,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				    <div class="modal-content" style="background-color: black;">
 					<div class="container">
 				      <div class="modal-body" style="padding: 20px 30px;">
-						<form class="right-place" method="POST" action="<?php echo base_url ('testing2/tambahkedalamkeranjang/');?>">
 					        <h5 class="modal-title" id="exampleModalLabel" style="color: white;font-size: 16px;font-weight: 700;text-align: center;">YEAH! Berhasil masuk keranjang...</h5>
 					        <br>
 					           	
@@ -160,19 +159,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						    </div>
 				      	</div>
 						</div>
-						</form>
 				      </div>
-				      
 				    </div>
 				  </div>
-				</div>
+				
 				
 			<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboards="false" data-backdrop="static">
 				  <div class="modal-dialog modal-dialog-centered" style="width: 350px;height: 135px;" role="document">
 				    <div class="modal-content" style="background-color: black;">
 				      
 				      <div class="modal-body" style="padding: 20px 30px;">
-				      	<form class="right-place" method="POST" action="<?php echo base_url ('testing2/tambahkedalamkeranjang/');?>">
 				      	<div class="container">
 					        <h5 class="modal-title" id="exampleModalLabel" style="color: white;font-size: 16px;font-weight: 700;text-align: center;">YEAH! Berhasil masuk keranjang...</h5>
 					        <br>
@@ -182,8 +178,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<input type="hidden" name="idproduk" value="<?php echo $this->session->userdata('idproduk'); ?>">
 								<input type="hidden" name="namaproduk" value="<?php echo $this->session->userdata('namaproduk'); ?>">
 								<input type="hidden" name="hasilproduk" id="test3" style="background: white;" readonly>
-								<input type="hidden" name="qty" id="jumlah1" readonly>
-								<input type="hidden" name="radio" id="ukuran1" readonly>
 								<input type="hidden" name="idproduk" value="<?php echo $this->session->userdata('idproduk'); ?>">
 						    </div>
 						    <div class="row"><h3> </h3></div>
@@ -191,22 +185,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<input type="hidden" name="idproduk" value="<?php echo $this->session->userdata('idproduk'); ?>">
 								<input type="hidden" name="namaproduk" value="<?php echo $this->session->userdata('namaproduk'); ?>">
 								<input   name="kecart" type="submit" class="btn" value="Beli yang Lainnya Juga" style=" background : #ff6600; color: white;width: 310px;font-size: 14px;font-weight: 700;">		      			
-								<input type="hidden" name="qty" id="jumlah2" readonly>
-								<input type="hidden" name="radio" id="ukuran2" readonly>
 								<input type="hidden" name="hasilproduk" id="test4" style="background: white;" readonly>
+
 						    </div>
 				      	</div>
-				      </form>
 				      </div>
-				      
 				    </div>
 				  </div>
 				</div>
 			<script type="text/javascript">
 				function totalhargaproduk() {
-				//menginput variable a 
+				var ukuran = document.getElementById('ukurannya').value;
+				//menginput harga produk
 				var a = document.getElementById('hargaproduk').value;
-				//menginput variable b
+				//menginput variable b dan jumlah yang dibeli
 				var b = document.getElementById('qty').value;
 				jumlah = parseInt(a) * parseInt(b);
 				//mengoutput hasil dari jumlah
