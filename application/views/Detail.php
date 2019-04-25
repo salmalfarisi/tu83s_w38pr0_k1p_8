@@ -22,11 +22,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		
 		</div>
-		<form class="right-place" method="POST" action="<?php echo base_url ('testing2/langsungbayar/');?>">
+		<form class="right-place" method="POST" action="<?php echo base_url ('testing2/tambahkedalamkeranjang/');?>">
 
-		    <input type="hidden" id="idproduk" name="idproduk" value="<?php echo $dp->idproduk; ?>">
-			<h1 style="font-weight: 600; " name="namaproduk"><?php echo $dp->namaproduk; ?></h1>
-			<input type="hidden" name="totalharga" value="<?php echo $dp->harga; ?>"" name=""><h3 style="font-weight: 700;">Rp<?php echo number_format($dp->harga,0,",","."); ?></h3>
+		    <input type="hidden" id="idproduk" name="idproduk" value="<?php echo $this->session->userdata('idproduk'); ?>">
+			<input type="hidden" id="namaproduk" name="namaproduk" value="<?php echo $this->session->userdata('namaproduk'); ?>">
+			<h1 style="font-weight: 600; "><?php echo $this->session->userdata('namaproduk'); ?></h1>
+			<input type="hidden" id="hargaproduk" name="totalharga" value="<?php echo $this->session->userdata('harga'); ?>" name=""><h3 style="font-weight: 700;">Rp<?php echo number_format($this->session->userdata('harga'),0,",","."); ?></h3>
 			<div class="" id="ukuranaa" style="height: 100px;border-bottom: solid #C3C3C3 1px;"><?php } ?>
 				<label>Pilih Ukuran</label>
 				<div class="middle">
@@ -87,7 +88,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 			<div class="field" style="padding-top:  10px ;">
 				<label>Pilih Jumlah</label>
-				<select name="qty" id="qty" required style="float: right;">
+				<select type="number" name="qty" id="qty" required style="float: right;">
 					<option value="1" selected="">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -99,7 +100,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			<div class="detail-splite" style="padding-left: 15px;">
 				<!-- <button type="submit" class="button" value="BELI"name="butATC" id="butATC" data-toggle="modal" data-target="#warning" style="width: 355px;"></button> -->
-				<input type="button" class="button" value="BELI" name="butATC" id="butATC" data-toggle="modal" data-target="#warning" style="width: 355px;">
+				<button onclick="totalhargaproduk()" type="button" class="button" value="BELI" name="butATC" id="butATC" data-toggle="modal" data-target="#warning" style="width: 355px;">BELI</button>
 				<br>
 				
 				
@@ -125,6 +126,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="desc-4">Insole : Jersey Foam</div>
                 <div class="desc-5">Construction : Stitch Down</div>
             </div>
+			<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboards="false" data-backdrop="static">
+				  <div class="modal-dialog modal-dialog-centered" style="width: 350px;height: 135px;" role="document">
+				    <div class="modal-content" style="background-color: black;">
+				      
+				      <div class="modal-body" style="padding: 20px 30px;">
+				      	<form class="right-place" method="POST" action="<?php echo base_url ('testing2/tambahkedalamkeranjang/');?>">
+				      	<div class="container">
+					        <h5 class="modal-title" id="exampleModalLabel" style="color: white;font-size: 16px;font-weight: 700;text-align: center;">YEAH! Berhasil masuk keranjang...</h5>
+					        <br>
+					           	
+					   		<div class="row">
+						      	<input   name="kecart" type="submit" class="btn" value="Langsung Ke Kasir" style="background-color: #F93E4C;color: white;width: 310px;font-size: 14px;font-weight: 700;">		      			
+								<input type="hidden" name="hasilproduk" id="test" style="background: white;" readonly>
+						    </div>
+						    <div class="row"><h3> </h3></div>
+						    <div class="row">
+						      	<button type="button" class="btn" style="background-color: #F93E4C;color: white;width: 310px;font-size: 14px;font-weight: 700;" data-dismiss="modal">Beli yang Lainnya Juga</button>				      			
+						    </div>
+				      	</div>
+				      </form>
+				      </div>
+				      
+				    </div>
+				  </div>
+				</div>
+			<script type="text/javascript">
+				function totalhargaproduk() {
+				//menginput variable a 
+				var a = document.getElementById('hargaproduk').value;
+				//menginput variable b
+				var b = document.getElementById('qty').value;
+				jumlah = parseInt(a) * parseInt(b);
+				//mengoutput hasil dari jumlah
+				document.getElementById('test').value = jumlah;
+				}
+			</script>
 		</form>
 		<div class="detail-bottom">
 			<ul class="debot-nav">
@@ -156,32 +193,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 
 	</div>
-	<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboards="false" data-backdrop="static">
-				  <div class="modal-dialog modal-dialog-centered" style="width: 350px;height: 135px;" role="document">
-				    <div class="modal-content" style="background-color: black;">
-				      
-				      <div class="modal-body" style="padding: 20px 30px;">
-				      	<form class="right-place" method="POST" action="<?php echo base_url ('testing2/langsungbayar/');?>">
-
-						    <input type="hidden" id="idproduk" name="idproduk" value="<?php echo $dp->idproduk; ?>">
-							<input type="hidden" name="namaproduk" value="<?php echo $dp->namaproduk; ?>">
-							
-				      	<div class="container">
-					        <h5 class="modal-title" id="exampleModalLabel" style="color: white;font-size: 16px;font-weight: 700;text-align: center;">YEAH! Berhasil masuk keranjang...</h5>
-					        <br>
-					           	
-					   		<div class="row">
-						      	<input   name="kecart" type="submit" class="btn" value="Langsung Ke Kasir" style="background-color: #F93E4C;color: white;width: 310px;font-size: 14px;font-weight: 700;">		      			
-						    </div>
-						    <div class="row"><h3> </h3></div>
-						    <div class="row">
-						      	<button type="button" class="btn" style="background-color: #F93E4C;color: white;width: 310px;font-size: 14px;font-weight: 700;" data-dismiss="modal">Beli yang Lainnya Juga</button>				      			
-						    </div>
-				      	</div>
-				      </form>
-				      </div>
-				      
-				    </div>
-				  </div>
-				</div>
+	
 </body>
