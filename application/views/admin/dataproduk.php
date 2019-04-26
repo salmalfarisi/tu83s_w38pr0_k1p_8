@@ -34,12 +34,6 @@
     <div class="row mt-5">
         <div class="col">
             <h3 class="text-center">Daftar Produk</h3>
-            <!-- <?php if (empty($mahasiswa)) : ?>
-            <div class="alert alert-danger" role="alert">
-                Data tidak ditemukan
-            </div>
-            <?php endif; ?> -->
-
             <table class="table mt-5">
                 <thead>
                     <tr>
@@ -69,10 +63,7 @@
                                 <a href="<?= base_url(); ?>admin/ubah/<?= $p['idproduk'] ?>" class="badge badge-success float-center" ?>ubah</a>
                             </td>
                         
-                        </tr><?php }} ?>
-                    
-                    
-                    
+                        </tr><?php }} ?>  
                 </tbody>
             </table>
             

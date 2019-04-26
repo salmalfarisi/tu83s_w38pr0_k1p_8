@@ -6,17 +6,18 @@
                     Form Ubah Harga Produk
                 </div>
                 <div class="card-body">
+                    
                     <form action="" method="post">
                         
-                        <input type="hidden" name="idproduk" value="<?= $mahasiswa['id'] ?>">
+                        <input type="hidden" name="idproduk" value="<?= $produk['idproduk'] ?>">
                         <div class="form-group">
                             <label for="nama">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="namaproduk" value="">
+                            <input type="text" class="form-control" id="nama" name="namaproduk" value="<?= $produk['namaproduk'] ?>" placeholder="">
                             <small class="form-text text-danger"></small>
                         </div>
                         <div class="form-group">
                             <label for="harga">HARGA</label>
-                            <input type="text" class="form-control" id="harga" name="harga" value="">
+                            <input type="text" class="form-control" id="harga" name="harga" value="<?= $produk['harga'] ?>">
                             <small class="form-text text-danger"></small>
                         </div>
                         

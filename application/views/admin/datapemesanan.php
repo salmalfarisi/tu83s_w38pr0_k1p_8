@@ -53,7 +53,7 @@
                             <td class="text-center">Rp<?= number_format($p['totalbayar'],0,",","."); ?></td>
                             <td class="text-center">
                                
-                                <a href="<?= base_url(); ?>admin/hapusPesanan/<?= $p['kodetransaksi'] ?>" class="badge badge-danger float-center" onclick="return confirm('Apakah anda yakin menghapus data ini?');" ?>hapus</a>
+                                <a href="<?= base_url(); ?>admin/hapusPesanan/<?= $p['nopemesanan'] ?>" class="badge badge-danger float-center" onclick="return confirm('Apakah anda yakin menghapus data ini?');" ?>hapus</a>
                             </td>
                         </tr></tr><?php }} ?>
                     
