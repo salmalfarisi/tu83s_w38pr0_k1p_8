@@ -16,9 +16,43 @@ class admin extends CI_Controller {
 
 	public function index()
 	{
-		//$this->load->view('template/adminheader');
-		$this->session->set_userdata('Judul Halaman', 'GMX- Admin Login');
-		$this->load->view('admin/login');
+		$this->form_validation->set_rules('username','username','required');
+		$this->form_validation->set_rules('password','password','required');
+
+		if($this->form_validation->run()==false)
+		{
+			$this->session->set_userdata('Judul Halaman', 'GMX- Admin Login');
+			$this->load->view('admin/login');
+			$this->session->set_flashdata('login','ditambahkan');
+		}
+		else
+		{
+			$this->login();
+		}
+	}
+
+	private function login()
+	{
+		$username=$this->input->post('username');
+		$password=$this->input->post('password');
+		$usernameA=$this->input->post('Auser');
+		$passwordA=$this->input->post('Apass');
+
+		if(!($username==$usernameA)&& !($password==$passwordA))
+		{
+			
+			$this->load->view('admin/login');
+		}
+		else
+		{
+			$data['produk'] = $this->Madmin->daftarproduct();
+			if ($this->input->post('keyword')) {
+				$data['produk'] = $this->Madmin->cariDataProduk();
+			}
+			$this->session->set_userdata('Judul Halaman', 'GMX- Data Produk');
+			$this->load->view('template/adminheader');
+			$this->load->view('admin/dataproduk',$data);
+		}	
 	}
 
 	public function dataproduk()
@@ -27,7 +61,6 @@ class admin extends CI_Controller {
 		if ($this->input->post('keyword')) {
 			$data['produk'] = $this->Madmin->cariDataProduk();
 		}
-		// $daftar['produk'] = $this->Madmin->daftarproduct();
 		$this->session->set_userdata('Judul Halaman', 'GMX- Data Produk');
 		$this->load->view('template/adminheader');
 		$this->load->view('admin/dataproduk',$data);
@@ -47,92 +80,87 @@ class admin extends CI_Controller {
 	
 	public function ubahproduk()
 	{
+		$data['produk'] = $this->Madmin->daftarproduct();
 		$this->load->view('template/adminheader');
-		$this->load->view('admin/ubahproduk');
+		$this->load->view('admin/ubahproduk',$data);
 				
 	}
 	public function tambahproduk()
 	{
-		
-
-		//from library form_validation, set rules for nama, nim, email = required
 		$this->form_validation->set_rules('namaproduk','namaproduk','required');
 		$this->form_validation->set_rules('harga','harga','required');
 		$this->form_validation->set_rules('kodeproduk','kodeproduk','required');
-		// $this->form_validation->set_rules('uploud','gambarproduk','required');
-		//conditon in form_validation, if user input form = false, then load page "tambah" again
-		// if($this->form_validation->run() == false){
-		// 	$this->load->view('template/adminheader');
-		// 	$this->load->view('admin/tambahproduk');
-		// }
-	    
 
 		if ( $this->form_validation->run() == false)
                 {
-                        $error = array('error' => $this->upload->display_errors());
-                        $this->load->view('template/adminheader');
-						$this->load->view('admin/tambahproduk',$error);
-                        
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->load->view('template/adminheader');
+					$this->load->view('admin/tambahproduk',$error);     
                 }
-                
-		//else, when successed {
-		else{
-		
+		else
+		{
 			$this->Madmin->tambahproduk();
-		//use flashdata to to show alert "added success"
-			$this->session->set_flashdata('flash','ditambahkan');
-		
+			$this->session->set_flashdata('flash','ditambahkan');		
 			redirect('admin/dataproduk');
 		}
 	}
 	public function hapus($id)
-	{
-		
-		$this->Madmin->hapusproduk($id);
-		
-		$this->session->set_flashdata('flash','dihapus');
-		
+	{		
+		$this->Madmin->hapusproduk($id);		
+		$this->session->set_flashdata('flash','dihapus');		
 		redirect('admin/dataproduk');
-
 	}
 
 	public function hapusPesanan($id)
-	{
-		
-		$this->Madmin->hapuspesanan($id);
-		
-		$this->session->set_flashdata('flash','dihapus');
-		
+	{		
+		$this->Madmin->hapuspesanan($id);		
+		$this->session->set_flashdata('flash','dihapus');		
 		redirect('admin/datapemesanan');
-
 	}
 
 	public function ubah($id)
 	{
-		$data['judul'] = 'Form Ubah Produk';
-		$data['produk'] = $this->Madmin->getProdukById($id);
-		
-
-		//from library form_validation, set rules for nama, nim, email = required
+		$this->session->set_userdata('Judul Halaman', 'GMX- Ubah Produk');
+		$data['produk'] = $this->Madmin->getProdukById($id);		
 		$this->form_validation->set_rules('namaproduk','namaproduk','required');
 		$this->form_validation->set_rules('harga','harga','required');
-		//conditon in form_validation, if user input form = false, then load page "ubah" again
+
 		if($this->form_validation->run() == false){
 			$this->load->view('template/adminheader');
-			$this->load->view('admin/ubahproduk');
+			$this->load->view('admin/ubahproduk',$data);
 		}
-		//else, when successed {
 		else{
-		//call method "ubahDataMahasiswa" in Mahasiswa_model
 			$this->Madmin->ubahproduk($id);
-		//use flashdata to to show alert "data changed successfully"
 			$this->session->set_flashdata('flash','diubah');
-		//back to controller mahasiswa }
 			redirect('admin/dataproduk');
 		}
 	}
 
+	function edit($id){
+		$where = array('idproduk' => $idproduk);
+		$data['produk'] = $this->Madmin->edit_data($where,'kodeproduk')->result();
+		$this->load->view('template/adminheader');
+		$this->load->view('ubahproduk',$data);
+	}
 
-
-
+	function update()
+	{
+		$id = $this->input->post('idproduk');
+		$namaproduk = $this->input->post('namaproduk');
+		$harga = $this->input->post('harga');
+		
+	 
+		$data = array(
+			'harga' => $harga,
+			'namaproduk'=>$namaproduk
+			
+		);
+	 
+		$where = array(
+			'idproduk' => $id
+		);
+	 
+		$this->Madmin->update_data($where,$data,'produk');
+		redirect('admin/dataproduk');
+	}
 }
