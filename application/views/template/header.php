@@ -5,8 +5,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html>
 <head>
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css') ?>">
-	<link rel="stylesheet" href="<?php echo base_url('assets/@fortawesome/fontawesome-free/css/fontawesome.css') ?>">
-	<link rel="stylesheet" href="<?php echo base_url('assets/@fortawesome/fontawesome-free/css/fontawesome.min.css') ?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>">
 	<script src="<?php echo base_url('assets/js/ajaxgoogle/jquery-3.4.0.min.js') ?>"></script>
 	<script src="<?php echo base_url('assets/js/ajaxgoogle/popper.min.js') ?>"></script>
