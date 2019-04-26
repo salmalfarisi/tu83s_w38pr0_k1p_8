@@ -8,6 +8,17 @@ class admin extends CI_Controller {
 		
 		$this->load->model('Madmin');
 		$this->load->library('form_validation');
+        $this->load->helper('url'); 
+		$this->load->helper('string');
+		$this->load->database();
+			
+	}
+
+	public function index()
+	{
+		//$this->load->view('template/adminheader');
+		$this->session->set_userdata('Judul Halaman', 'GMX- Admin Login');
+		$this->load->view('admin/login');
 	}
 
 	public function dataproduk()
@@ -120,6 +131,8 @@ class admin extends CI_Controller {
 			redirect('admin/dataproduk');
 		}
 	}
+
+
 
 
 }
