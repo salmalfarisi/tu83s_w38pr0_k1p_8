@@ -130,10 +130,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="carousel slide col-1"	data-ride="carousel" data-interval="2000">
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<a href="<?php echo base_url('testing2/index');?>"><img class="img-crs" src="<?php echo base_url('assets/contoh home/pic/icon1.png')?>"></a>
+					<a href="<?php echo base_url('testing2/rumah');?>"><img class="img-crs" src="<?php echo base_url('assets/contoh home/pic/icon1.png')?>"></a>
 				</div>
 				<div class="carousel-item" style="height: 50%, width:50%">
-					<a href="<?php echo base_url('testing2/index');?>"><img class="img-crs" src="<?php echo base_url('assets/contoh home/pic/icon2.png')?>" ></a>
+					<a href="<?php echo base_url('testing2/rumah');?>"><img class="img-crs" src="<?php echo base_url('assets/contoh home/pic/icon2.png')?>" ></a>
 
 				</div>
 			</div>
