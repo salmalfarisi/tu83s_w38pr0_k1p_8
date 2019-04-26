@@ -9,9 +9,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="<?php echo base_url('assets/js/ajaxgoogle/jquery-3.4.0.min.js') ?>"></script>
 	<script src="<?php echo base_url('assets/js/ajaxgoogle/popper.min.js') ?>"></script>
 	<script src="<?php echo base_url('assets/js/ajaxgoogle/bootstrap.min.js') ?>"></script>
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
   <style type="text/css">
   	.img-crs{
   		width: 95px;
@@ -38,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   		border-style: solid;
   		border-width: 0.1px 0px 0.1px 0px;
   		border-color: grey;
-  		padding: 10px 0px 10px 0px;
+  		padding: 10px 0px 3px 0px;
   		width: 98%;
   	}
 	.carousel2{
@@ -92,6 +89,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		height: auto;
 		margin-top :10px
 	}
+
+	.carousel-indicators li {
+  		width: 15px;
+  		height: 15px;
+  		border-radius: 100%;
+
+  		margin: 5px;
+
+    	cursor: pointer;
+    	border: none;
+    	background-color: grey;
+
+	}
+
+	.carousel-indicators .active {
+    width: 15px;
+  	height: 15px;
+  	border-radius: 100%;
+    background-color: #FF6600;
+}
+
+	.carabeli{
+		left: -40px;
+	}
+
 	.link{
 		color : black;
 
@@ -114,14 +136,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	.hurufproduk
 	{
-		color : black;
+		color : #333333;
 		
 	}
 	
 	.white{
 		color: white;
 	}
-
+	.linkss:hover{
+		color: #FF6600;
+		text-decoration: none
+	}
   </style>
 	<title><?php echo $this->session->userdata('Judul Halaman');?></title>
 </head>
@@ -139,16 +164,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 		<div class="header-icons col-2 offset-9">
-                <a href="/search?idsrch=0&amp;prodkat=0&amp;ref=&amp;fav=1&amp;brnd=0&amp;txtcr=" class="link fav"><img src="<?php echo base_url('assets/contoh home/pic/fav.png')?>">FAV</a>   
-                <a href="#" class=" link cart active"><img src="<?php echo base_url('assets/contoh home/pic/cart.png')?>">CART </a>
-                <a href="#" class="link cari"><img src="<?php echo base_url('assets/contoh home/pic/cari.png')?>">CARI</a>                
+                <a href="/search?idsrch=0&amp;prodkat=0&amp;ref=&amp;fav=1&amp;brnd=0&amp;txtcr=" class="link fav hurufproduk linkss"><img src="<?php echo base_url('assets/contoh home/pic/fav.png')?>">FAV</a>   
+                <a href="#" class="link cari hurufproduk linkss"><img src="<?php echo base_url('assets/contoh home/pic/cart.png')?>">CART</a> 
+                <a href="#" class="link cari hurufproduk linkss"><img src="<?php echo base_url('assets/contoh home/pic/cari.png')?>">CARI</a>                
         </div>
 	</div>
 	<div class="row headers">
-		<div class="col-2 offset-6 a1"><b>Browse By Gender</b></div>
+		<div class="col-2 offset-6 a1 hurufproduk" style="left: -50px"><b>Browse By Gender</b></div>
 	</div>
 	<div class="row headers">
-		<div class="col-1 offset-3"><a class="hurufproduk " href="<?php echo base_url('testing2/produkcowok');?>">BOY</a></div>
+		<div class="col-1 offset-3"><a class="hurufproduk linkss " href="<?php echo base_url('testing2/produkcowok');?>"><b>BOY</b></a></div>
 		<div class="col-1 offset-2"><img src="<?php echo base_url('assets/contoh home/pic/mid.png')?>" style="height: 80%"></div>
-		<div class="col-1 offset-2"><a class="hurufproduk " href="<?php echo base_url('testing2/produkcewek');?>">GIRL</a></div>
+		<div class="col-1 offset-2"><a class="hurufproduk linkss" href="<?php echo base_url('testing2/produkcewek');?>"><b>GIRL</b></a></div>
 	</div> 
