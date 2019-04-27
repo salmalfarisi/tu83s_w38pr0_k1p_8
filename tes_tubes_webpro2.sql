@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2019 at 06:03 AM
+-- Generation Time: Apr 27, 2019 at 06:14 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -67,18 +67,21 @@ CREATE TABLE `pemesanan` (
   `nomortelepon` varchar(20) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `provinsi` varchar(50) DEFAULT NULL,
-  `kodepos` int(5) DEFAULT NULL
+  `kota` varchar(100) DEFAULT NULL,
+  `kecamatan` varchar(100) DEFAULT NULL,
+  `kodepos` int(5) DEFAULT NULL,
+  `catatan` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `pemesanan`
 --
 
-INSERT INTO `pemesanan` (`nopemesanan`, `namasementara`, `totalbayar`, `kodetransaksi`, `kurirpengiriman`, `metodepembayaran`, `namalengkap`, `alamattujuan`, `nomortelepon`, `email`, `provinsi`, `kodepos`) VALUES
-(1, 'DSmjaAlGPe', 2236520, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'SEhodaFqey', 1340000, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'yaxPLgSGJM', 0, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'RkaVCWmIrZ', 1566520, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `pemesanan` (`nopemesanan`, `namasementara`, `totalbayar`, `kodetransaksi`, `kurirpengiriman`, `metodepembayaran`, `namalengkap`, `alamattujuan`, `nomortelepon`, `email`, `provinsi`, `kota`, `kecamatan`, `kodepos`, `catatan`) VALUES
+(1, 'DSmjaAlGPe', 2236520, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 'SEhodaFqey', 1340000, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'yaxPLgSGJM', 0, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'RkaVCWmIrZ', 1566520, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
