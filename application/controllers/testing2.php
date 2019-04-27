@@ -157,4 +157,13 @@ class testing2 extends CI_Controller {
 		$this->load->view('konfirmasipembelian/ringkasanbarang', $cart);
 		$this->load->view('template/footer');
 	}
+	
+	public function identitasdatadiri()
+	{
+		//$nama= $this->session->userdata('namapelanggan');
+		$cart['cart'] = $this->DatabaseGeoff->showcart();
+		$this->load->view('template/header');
+		$this->load->view('konfirmasipembelian/identitasdiri', $cart);
+		$this->load->view('template/footer');
+	}
 }
