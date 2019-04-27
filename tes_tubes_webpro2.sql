@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2019 at 03:19 PM
+-- Generation Time: Apr 27, 2019 at 06:03 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -44,8 +44,10 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`idpemesanan`, `idproduk`, `jadipesan`, `nopemesanan`, `namaproduk`, `jumlahproduk`, `ukuranproduk`, `totalhargaproduk`) VALUES
-(1, 19, 'N', 2, 'Authentic 420', 2, '40', 550000),
-(2, 2, 'N', 2, 'Abacus Navy', 3, '39', 939912);
+(1, 2, 'N', 1, 'Abacus Navy', 5, '38', 1566520),
+(2, 17, 'N', 1, 'Arthur Black Gum', 2, '39', 670000),
+(6, 17, 'N', 2, 'Arthur Black Gum', 4, '39', 1340000),
+(7, 2, 'N', 4, 'Abacus Navy', 5, '40', 1566520);
 
 -- --------------------------------------------------------
 
@@ -58,6 +60,8 @@ CREATE TABLE `pemesanan` (
   `namasementara` varchar(10) NOT NULL,
   `totalbayar` int(11) DEFAULT NULL,
   `kodetransaksi` varchar(10) DEFAULT NULL,
+  `kurirpengiriman` varchar(10) DEFAULT NULL,
+  `metodepembayaran` varchar(10) DEFAULT NULL,
   `namalengkap` varchar(100) DEFAULT NULL,
   `alamattujuan` varchar(200) DEFAULT NULL,
   `nomortelepon` varchar(20) DEFAULT NULL,
@@ -70,9 +74,11 @@ CREATE TABLE `pemesanan` (
 -- Dumping data for table `pemesanan`
 --
 
-INSERT INTO `pemesanan` (`nopemesanan`, `namasementara`, `totalbayar`, `kodetransaksi`, `namalengkap`, `alamattujuan`, `nomortelepon`, `email`, `provinsi`, `kodepos`) VALUES
-(1, 'aLtUhdOYsQ', 1489912, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'JTCDNIhytc', 1489912, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `pemesanan` (`nopemesanan`, `namasementara`, `totalbayar`, `kodetransaksi`, `kurirpengiriman`, `metodepembayaran`, `namalengkap`, `alamattujuan`, `nomortelepon`, `email`, `provinsi`, `kodepos`) VALUES
+(1, 'DSmjaAlGPe', 2236520, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 'SEhodaFqey', 1340000, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'yaxPLgSGJM', 0, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'RkaVCWmIrZ', 1566520, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -180,13 +186,13 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `idpemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idpemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `nopemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `nopemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `produk`
