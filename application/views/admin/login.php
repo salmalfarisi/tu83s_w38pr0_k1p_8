@@ -223,18 +223,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </style>
 	<title><?php echo $this->session->userdata('Judul Halaman');?></title>
 </head>
-<body>
-	<?php 
-		$jsonAkun = file_get_contents("assets/js/akun.json");
-		$json = json_decode($jsonAkun,true); 
-		$usernameA=  $json['username'];
-		$passwordA=  $json['password'];
-
-	?>
-
-	<input type="hidden" name="Auser" value="<?php echo $usernameA?>">
-	<input type="hidden" name="Apass" value="<?php echo $passwordA?>">
-	
+<body>	
 	<div class="container h-100">
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
@@ -254,30 +243,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 				</div>
 				<div class="d-flex justify-content-center ">
-					<!-- <?php if ($this->session->flashdata('login')) : ?>
-					    <div class="">
-					        <div class="">
-					            <div class="alert alert-danger fade show" role="alert" style="transform: translate(0,110px);">
-					                Login <strong>Gagal</strong> <?= $this->session->flashdata('flash'); ?>
-					                
-					            </div>
-					        </div>
-					    </div>
-					<?php endif; ?> -->
+					
 				</div>
 				<div class="d-flex justify-content-center form_container">
 					
 					<form method="POST" action="<?php echo base_url('admin')?>">
-						<div class="form-group">
-							<input type="text" name="username" class="form-control input_user" value="" placeholder="username" required="">
-						</div>
-						<div class="form-group mb-4">
+							<div class="form-group">
+								<?php if ($this->session->flashdata('login')) : ?>
+									<p class="text-danger text-center">Login <strong>GAGAL</strong> <br><?= $this->session->flashdata('login'); ?></p>	
+								<?php endif;?>
+								<input type="text" name="username" class="form-control input_user" value="" placeholder="username" required="">
+								
+							</div>
+							<div class="form-group mb-4">
+								<input type="password" name="password" class="form-control input_pass" value="" placeholder="password" required="">
+								
+							</div>
+							<div class="d-flex justify-content-center mt-4 login_container" >
+								<button type="submit" name="button" id="login" class="btn login_btn">Login</button>
+							</div>
 							
-							<input type="password" name="password" class="form-control input_pass" value="" placeholder="password" required="">
-						</div>
-						<div class="d-flex justify-content-center mt-4 login_container" >
-							<button type="submit" name="button" id="login" class="btn login_btn">Login</button>
-						</div>
 					</form>
 				</div>
 				

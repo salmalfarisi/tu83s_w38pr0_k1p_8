@@ -5,7 +5,18 @@
                 <div class="card-header text-center">
                     Form Tambah Data Produk
                 </div>
-                
+                <?php if ($this->session->flashdata('tambah')) : ?>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                Data produk <strong><?= $this->session->flashdata('tambah'); ?></strong> ditambahkan.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
 
                 <div class="card-body">
                     <form action="" method="post" enctype="multipart/form-data"><?php echo form_open_multipart('admin/tambahproduk');?>
