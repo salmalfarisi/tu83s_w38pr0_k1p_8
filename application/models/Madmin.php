@@ -42,10 +42,12 @@ class Madmin extends CI_Model
 			"deskripsiproduk" => $this->input->post('deskripsi', true),
 			"gambarproduk"=>$this->uploadImage(),
 		];
-		return $this->db->insert('produk', $data);
+		if($this->uploadImage()!=false){
+			return $this->db->insert('produk', $data);
+		}
 	}
 
-	private function uploadImage()
+	public function uploadImage()
 	{
 	    $config['upload_path']          = './assets/produk/listproduk/';
 	    $config['allowed_types']        = 'gif|jpg|png';
@@ -59,8 +61,11 @@ class Madmin extends CI_Model
 
 	    if ($this->upload->do_upload('gambar')) {
 	        return $this->upload->data("file_name");
-	    }
-	    print_r($this->upload->display_errors());
+		}
+		else{
+			return false;
+		}
+	    
 	}
 	
 	public function hapusproduk($id)
@@ -110,6 +115,24 @@ class Madmin extends CI_Model
 		$this->db->like('kodetransaksi', $keyword);
 		$this->db->or_like('namalengkap', $keyword);
 		return $this->db->get('pemesanan')->result_array();
+	}
+
+	public function getUsername()
+	{
+		$jsonAkun = file_get_contents("assets/js/akun.json");
+		$json = json_decode($jsonAkun,true); 
+		$usernameA=  $json['username'];
+
+		return $usernameA;
+	}
+
+	public function getPassword()
+	{
+		$jsonAkun = file_get_contents("assets/js/akun.json");
+		$json = json_decode($jsonAkun,true); 
+		$passwordA=  $json['password'];
+
+		return $passwordA;
 	}
 
 }
