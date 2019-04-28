@@ -20,8 +20,14 @@
                             <input type="text" class="form-control" id="harga" name="harga" value="<?= $produk['harga'] ?>">
                             <small class="form-text text-danger"></small>
                         </div>
-                        
-                        <button type="submit" name="tambah" class="btn btn-primary float-right"style="background:#FF6600;color: white">Ubah Data</button>
+                        <div class="form-group">
+                            <label for="deskripsi">DESKRIPSI</label>
+                            <textarea type="text" class="form-control" id="deskripsi" name="deskripsi"><?= $produk['deskripsiproduk'] ?></textarea>
+                            <small class="form-text text-danger"></small>
+                        </div>
+                        <div>
+                            <button type="submit" name="tambah" class="btn btn-primary float-right"style="background:#FF6600;color: white;">Ubah Data</button>
+                        </div>
                     </form>
                 </div>
             </div>

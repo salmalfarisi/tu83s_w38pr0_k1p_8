@@ -49,21 +49,26 @@
                 <tbody class="text-center">
                     <?php if(is_array($produk)){  foreach ($produk as $p) { ?>
                         <tr>
-                            <td class="text-center"><br><?= $p['namaproduk']; ?></td>
-                            <td class="text-center"><br><?= $p['kodeproduk']; ?></td>
-                            <td class="text-center"><br><?= $p['jenisproduk']; ?></td>
-                            <td class="text-center"><br><?= $p['targetpembeli']; ?></td>
-                            <td class="text-center"><br>Rp<?= number_format($p['harga'],0,",","."); ?></td>
-                            <td class="text-center">
+                            <td class="text-center"><?= $p['namaproduk']; ?></td>
+                            <td class="text-center"><?= $p['kodeproduk']; ?></td>
+                            <td class="text-center"><?= $p['jenisproduk']; ?></td>
+                            <td class="text-center"><?= $p['targetpembeli']; ?></td>
+                            <td class="text-center">Rp<?= number_format($p['harga'],0,",","."); ?></td>
+                            <td rowspan="2" class="text-center">
                                 <img style="max-width: 100px" src="<?php echo base_url('assets/produk/listproduk/'). $p['gambarproduk']; ?>">
                             </td>
-                            <td class="text-center">
+                            <td rowspan="2" class="text-center">
                                 <br>
                                 <a href="<?= base_url(); ?>admin/hapus/<?= $p['idproduk'] ?>" class="badge badge-danger float-center" onclick="return confirm('Apakah anda yakin menghapus data ini?');" ?>hapus</a>
                                 <a href="<?= base_url(); ?>admin/ubah/<?= $p['idproduk'] ?>" class="badge badge-success float-center" ?>ubah</a>
                             </td>
                         
-                        </tr><?php }} ?>  
+                        </tr>
+                        <tr>
+                        <td><b>Deskripsi Produk</b></td>
+                        <td colspan="4" class="text-left"><?= $p['deskripsiproduk']; ?></td>
+                        </tr>
+                        <?php }} ?>  
                 </tbody>
             </table>
             
