@@ -93,7 +93,8 @@ class Madmin extends CI_Model
 	{
 		$data = [
 			"namaproduk" => $this->input->post('namaproduk', true),
-			"harga" => $this->input->post('harga', true),			
+			"harga" => $this->input->post('harga', true),
+			"deskripsiproduk" => $this->input->post('deskripsi', true),			
 		];
 		$this->db->where('idproduk',$this->input->post('idproduk'));
 		return $this->db->update('produk',$data);
