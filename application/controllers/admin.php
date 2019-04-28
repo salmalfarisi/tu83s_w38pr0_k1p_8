@@ -23,7 +23,6 @@ class admin extends CI_Controller {
 		{
 			$this->session->set_userdata('Judul Halaman', 'GMX- Admin Login');
 			$this->load->view('admin/login');
-			$this->session->set_flashdata('login','ditambahkan');
 		}
 		else
 		{
@@ -35,24 +34,26 @@ class admin extends CI_Controller {
 	{
 		$username=$this->input->post('username');
 		$password=$this->input->post('password');
-		$usernameA=$this->input->post('Auser');
-		$passwordA=$this->input->post('Apass');
 
-		if(!($username==$usernameA)&& !($password==$passwordA))
+		if(($username!=($this->Madmin->getUsername()))&&($password!=($this->Madmin->getPassword())))
 		{
-			
+			$this->session->set_flashdata('login','Username dan Password salah');
 			$this->load->view('admin/login');
 		}
-		else
+		else if($username!=($this->Madmin->getUsername()))
 		{
-			$data['produk'] = $this->Madmin->daftarproduct();
-			if ($this->input->post('keyword')) {
-				$data['produk'] = $this->Madmin->cariDataProduk();
-			}
-			$this->session->set_userdata('Judul Halaman', 'GMX- Data Produk');
-			$this->load->view('template/adminheader');
-			$this->load->view('admin/dataproduk',$data);
-		}	
+			$this->session->set_flashdata('login','Username salah');
+			$this->load->view('admin/login');
+		}
+		else if($password!=($this->Madmin->getPassword()))
+		{
+			$this->session->set_flashdata('login','Password salah');			
+			$this->load->view('admin/login');
+			
+		}
+		else{
+			$this->dataproduk();
+		}
 	}
 
 	public function dataproduk()
@@ -90,13 +91,21 @@ class admin extends CI_Controller {
 		$this->form_validation->set_rules('namaproduk','namaproduk','required');
 		$this->form_validation->set_rules('harga','harga','required');
 		$this->form_validation->set_rules('kodeproduk','kodeproduk','required');
-
+		$cek=$this->Madmin->uploadImage();
 		if ( $this->form_validation->run() == false)
                 {
+					
                     $error = array('error' => $this->upload->display_errors());
                     $this->load->view('template/adminheader');
 					$this->load->view('admin/tambahproduk',$error);     
-                }
+				}
+		else if($cek==false)
+		{
+			$this->session->set_flashdata('tambah','Gagal');
+			$error = array('error' => $this->upload->display_errors());
+            $this->load->view('template/adminheader');
+			$this->load->view('admin/tambahproduk',$error);
+		}
 		else
 		{
 			$this->Madmin->tambahproduk();
@@ -107,34 +116,34 @@ class admin extends CI_Controller {
 	public function hapus($id)
 	{		
 		$this->Madmin->hapusproduk($id);		
-		$this->session->set_flashdata('flash','dihapus');		
-		redirect('admin/dataproduk');
-	}
+			$this->session->set_flashdata('flash','dihapus');		
+			redirect('admin/dataproduk');
+		}
 
-	public function hapusPesanan($id)
+		public function hapusPesanan($id)
 	{		
 		$this->Madmin->hapuspesanan($id);		
 		$this->session->set_flashdata('flash','dihapus');		
 		redirect('admin/datapemesanan');
 	}
 
-	public function ubah($id)
-	{
-		$this->session->set_userdata('Judul Halaman', 'GMX- Ubah Produk');
-		$data['produk'] = $this->Madmin->getProdukById($id);		
-		$this->form_validation->set_rules('namaproduk','namaproduk','required');
-		$this->form_validation->set_rules('harga','harga','required');
+				public function ubah($id)
+					{
+						$this->session->set_userdata('Judul Halaman', 'GMX- Ubah Produk');
+						$data['produk'] = $this->Madmin->getProdukById($id);		
+						$this->form_validation->set_rules('namaproduk','namaproduk','required');
+						$this->form_validation->set_rules('harga','harga','required');
 
-		if($this->form_validation->run() == false){
-			$this->load->view('template/adminheader');
-			$this->load->view('admin/ubahproduk',$data);
+					if($this->form_validation->run() == false){
+				$this->load->view('template/adminheader');
+				$this->load->view('admin/ubahproduk',$data);
+			}
+			else{
+				$this->Madmin->ubahproduk($id);
+				$this->session->set_flashdata('flash','diubah');
+				redirect('admin/dataproduk');
+			}
 		}
-		else{
-			$this->Madmin->ubahproduk($id);
-			$this->session->set_flashdata('flash','diubah');
-			redirect('admin/dataproduk');
-		}
-	}
 
 	function edit($id){
 		$where = array('idproduk' => $idproduk);
