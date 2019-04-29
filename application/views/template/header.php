@@ -166,7 +166,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="header-icons col-2 offset-9">
                 <a href="/search?idsrch=0&amp;prodkat=0&amp;ref=&amp;fav=1&amp;brnd=0&amp;txtcr=" class="link fav hurufproduk linkss"><img src="<?php echo base_url('assets/contoh home/pic/fav.png')?>">FAV</a>   
                 <a href="#" class="link cari hurufproduk linkss"><img src="<?php echo base_url('assets/contoh home/pic/cart.png')?>">CART</a> 
-                <a href="#" class="link cari hurufproduk linkss"><img src="<?php echo base_url('assets/contoh home/pic/cari.png')?>">CARI</a>                
+                <div class="dropdown">                
+			<button class="dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<img src="<?php echo base_url('assets/contoh home/pic/cari.png')?>">CARI
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenu">
+				<form method="POST" action="<?php echo base_url('testing2/searchproductengine');?>">
+					<p>
+						<input name="cariproduk" class="link cari hurufproduk linkss" placeholder="Saya ingin Mencari...">
+						<button type="submit"><img src="<?php echo base_url('assets/contoh home/pic/cari.png')?>"></button>
+					</p>
+				</form>
+			</div>
+		</div>                
         </div>
 	</div>
 	<div class="row headers">
