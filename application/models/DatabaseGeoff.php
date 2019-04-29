@@ -3,6 +3,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class DatabaseGeoff extends CI_Model 
 {
+	public function showsemuaproduk()
+	{
+		$this->db->select('*');
+		$this->db->from('produk');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
+	//menampilkan produk berdasarkan hasil pencarian
+	public function cariproduk()
+	{
+		$keyword = $this->input->post('cariproduk', true);
+		//use query builder class to search data mahasiswa based on keyword "nama" or "jurusan" or "nim" or "email"
+		$this->db->select('*');
+		$this->db->from('produk');
+		//pasang like atau or like supaya bisa mencari hasil dari database yang ada. dan semua atribut harus dikeluarkan semua disini
+		$this->db->like('namaproduk', $keyword);
+		$this->db->or_like('jenisproduk', $keyword);
+		$this->db->or_like('deskripsiproduk', $keyword);
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
 	//Menampilkan semua data berdasarkan jenis kelamin
 	public function showproduct($orderby)
 	{
