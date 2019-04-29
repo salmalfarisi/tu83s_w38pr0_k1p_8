@@ -44,16 +44,16 @@
 				<th style="background:#d6d8db;"></th>
 			</tr>
 			<tr>
-				<th >No. Telepon</th>
-				<td>Bentuknya input biasa</td>
+				<th>No. Telepon</th>
+				<td><input name="nomortelepon" type="text" required></td>
 			</tr>
 			<tr>
 				<th >Email</th>
-				<td>Bentuknya input biasa</td>
+				<td><input name="email" type="email" required></td>
 			</tr>
 			<tr>
 				<th >Nama</th>
-				<td>Bentuknya input biasa</td>
+				<td><input name="namapelanggan" type="text" required></td>
 			</tr>
 			<tr>
 				<th >Provinsi</th>
@@ -69,15 +69,15 @@
 			</tr>
 			<tr>
 				<th >Alamat</th>
-				<td>Bentuknya input biasa</td>
+				<td><textarea name="alamat" type="text" rows="5" required></textarea></td>
 			</tr>
 			<tr>
 				<th >Kode Pos</th>
-				<td>Bentuknya input biasa</td>
+				<td><input name="Kode Pos" type="text" required></td>
 			</tr>
 			<tr>
 				<th >Catatan</th>
-				<td>b</td>
+				<td><textarea name="catatan" type="text" rows="5" required></textarea></td>
 			</tr>
 		</table>
 </div>
