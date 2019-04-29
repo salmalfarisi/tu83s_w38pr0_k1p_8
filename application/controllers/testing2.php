@@ -39,6 +39,7 @@ class testing2 extends CI_Controller {
 		$callnama = $this->session->set_userdata('namapelanggan', $anonymouspelanggan);
 		$this->session->set_userdata('orderby','Netral');
 		$this->session->set_userdata('Judul Halaman', 'GMX- GEOFF Max Footwear');
+		$this->session->set_userdata('warnagender','btn-dark');
 		$this->load->view('template/header');
 		$this->load->view('home');
 		$this->load->view('template/footer');
@@ -52,26 +53,58 @@ class testing2 extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
+	public function searchproductengine()
+	{
+		if ($this->input->post('cariproduk')) {
+			$daftar['produk'] = $this->DatabaseGeoff->cariproduk();
+			$this->load->view('template/header');
+			$this->load->view('halamanproduk', $daftar);
+			$this->load->view('template/footer');
+		}
+	}
+	
 	public function produkcowok()
 	{
 		$this->session->set_userdata('orderby', 'L');
 		$orderby = $this->session->userdata('orderby');
-		$daftar['produk'] = $this->DatabaseGeoff->showproduct($orderby);
+		$this->session->set_userdata('warnagender','btn-dark');
 		$this->session->set_userdata('Judul Halaman', 'GMX- GEOFF BOYS');
-		$this->load->view('template/header');
-		$this->load->view('halamanproduk', $daftar);
-		$this->load->view('template/footer');
+		
+		if ($this->input->post('cariproduk')) {
+			$daftar['produk'] = $this->DatabaseGeoff->cariproduk();
+			$this->load->view('template/header');
+			$this->load->view('halamanproduk', $daftar);
+			$this->load->view('template/footer');
+		}
+		else
+		{
+			$daftar['produk'] = $this->DatabaseGeoff->showproduct($orderby);
+			$this->load->view('template/header');
+			$this->load->view('halamanproduk', $daftar);
+			$this->load->view('template/footer');
+		}
 	}
 	
 	public function produkcewek()
 	{
 		$this->session->set_userdata('orderby', 'P');
 		$orderby = $this->session->userdata('orderby');
+		$this->session->set_userdata('warnagender','btn-danger');
 		$daftar['produk'] = $this->DatabaseGeoff->showproduct($orderby);
 		$this->session->set_userdata('Judul Halaman', 'GMX- GEOFF GIRLS');
-		$this->load->view('template/header');
-		$this->load->view('halamanproduk', $daftar);
-		$this->load->view('template/footer');
+				if ($this->input->post('cariproduk')) {
+			$daftar['produk'] = $this->DatabaseGeoff->cariproduk();
+			$this->load->view('template/header');
+			$this->load->view('halamanproduk', $daftar);
+			$this->load->view('template/footer');
+		}
+		else
+		{
+			$daftar['produk'] = $this->DatabaseGeoff->showproduct($orderby);
+			$this->load->view('template/header');
+			$this->load->view('halamanproduk', $daftar);
+			$this->load->view('template/footer');
+		}
 	}
 	
 	public function detail($idproduk)
