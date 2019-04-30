@@ -44,7 +44,7 @@ class testing2 extends CI_Controller {
 		$this->DatabaseGeoff->insertnama($data);
 		$callnama = $this->session->set_userdata('namapelanggan', $anonymouspelanggan);
 		$this->session->set_userdata('orderby','Netral');
-		$this->session->set_userdata('Judul Halaman', 'GMX- GEOFF Max Footwear');
+		$this->session->set_userdata('Judul Halaman', 'GMX - GEOFF Max Footwear');
 		$this->session->set_userdata('warnagender','btn-dark');
 		$this->load->view('template/header');
 		$this->load->view('home');
@@ -56,7 +56,7 @@ class testing2 extends CI_Controller {
 	*/
 	public function rumah()
 	{
-		$this->session->set_userdata('Judul Halaman', 'GMX- GEOFF Max Footwear');
+		$this->session->set_userdata('Judul Halaman', 'GMX - GEOFF Max Footwear');
 		$this->load->view('template/header');
 		$this->load->view('home');
 		$this->load->view('template/footer');
@@ -83,7 +83,7 @@ class testing2 extends CI_Controller {
 		$this->session->set_userdata('orderby', 'L');
 		$orderby = $this->session->userdata('orderby');
 		$this->session->set_userdata('warnagender','btn-dark');
-		$this->session->set_userdata('Judul Halaman', 'GMX- GEOFF BOYS');
+		$this->session->set_userdata('Judul Halaman', 'GMX - GEOFF BOYS');
 		
 		if ($this->input->post('cariproduk')) {
 			$daftar['produk'] = $this->DatabaseGeoff->cariproduk();
@@ -109,7 +109,7 @@ class testing2 extends CI_Controller {
 		$orderby = $this->session->userdata('orderby');
 		$this->session->set_userdata('warnagender','btn-danger');
 		$daftar['produk'] = $this->DatabaseGeoff->showproduct($orderby);
-		$this->session->set_userdata('Judul Halaman', 'GMX- GEOFF GIRLS');
+		$this->session->set_userdata('Judul Halaman', 'GMX - GEOFF GIRLS');
 				if ($this->input->post('cariproduk')) {
 			$daftar['produk'] = $this->DatabaseGeoff->cariproduk();
 			$this->load->view('template/header');
@@ -279,6 +279,7 @@ class testing2 extends CI_Controller {
 	*/
 	public function beli()
 	{
+		$this->session->set_userdata('Judul Halaman', 'GMX - GEOFF Max Footwear');
 		$this->load->view('template/header');
 		$this->load->view('beli');
 		$this->load->view('template/footer');
@@ -289,6 +290,7 @@ class testing2 extends CI_Controller {
 	*/
 	public function konfirmasibarang()
 	{
+		$this->session->set_userdata('Judul Halaman', 'GMX - GEOFF Max Footwear');
 		$this->load->view('template/header');
 		$this->load->view('konfirmasi');
 		$this->load->view('template/footer');
