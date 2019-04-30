@@ -165,7 +165,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 		<div class="header-icons col-2 offset-9">
                 <a href="/search?idsrch=0&amp;prodkat=0&amp;ref=&amp;fav=1&amp;brnd=0&amp;txtcr=" class="link fav hurufproduk linkss"><img src="<?php echo base_url('assets/contoh home/pic/fav.png')?>">FAV</a>   
-                <a href="#" class="link cari hurufproduk linkss"><img src="<?php echo base_url('assets/contoh home/pic/cart.png')?>">CART</a> 
+                <a href="<?php echo base_url('testing2/panggilcart');?>" class="link cari hurufproduk linkss"><img src="<?php echo base_url('assets/contoh home/pic/cart.png')?>">CART</a> 
                 <div class="dropdown">                
 			<button class="dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<img src="<?php echo base_url('assets/contoh home/pic/cari.png')?>">CARI
