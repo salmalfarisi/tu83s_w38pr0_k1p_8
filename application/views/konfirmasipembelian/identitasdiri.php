@@ -40,44 +40,65 @@
 	<form method="POST" action="#">
 		<table class="table container-fluid">
 			<tr>
-				<th style="width : 25%; background:#d6d8db;"><span><img src="<?php echo base_url('assets/contoh home/pic/baseline-place-24px.svg');?> "></span> Data & Alamat Kirim</th>
+				<th style="width : 20%; background:#d6d8db;"><span><img src="<?php echo base_url('assets/contoh home/pic/baseline-place-24px.svg');?> "></span> Data & Alamat Kirim</th>
 				<th style="background:#d6d8db;"></th>
 			</tr>
 			<tr>
 				<th>No. Telepon</th>
-				<td><input name="nomortelepon" type="text" required></td>
+				<td><input class="form-control col-3" name="nomortelepon" type="text" required></td>
 			</tr>
 			<tr>
 				<th >Email</th>
-				<td><input name="email" type="email" required></td>
+				<td><input name="email" class="form-control" type="email" required></td>
 			</tr>
 			<tr>
 				<th >Nama</th>
-				<td><input name="namapelanggan" type="text" required></td>
+				<td><input class="form-control" name="namapelanggan" type="text" required></td>
 			</tr>
 			<tr>
-				<th >Provinsi</th>
-				<td>Bentuknya multilevel dropdown</td>
+				<th>Provinsi</th>
+				<td>
+					<select class="browser-default custom-select" name='provinsi' id="provinsi_dropdown">
+						<option value="">Pilih Provinsi</option>
+						<?php foreach($provinsi as $prov) {?>
+						<option name="provinsi" value="<?php echo $prov->id_provinsi; ?>"><?php echo $prov->nama_provinsi; ?></option>
+						<?php } ?>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<th >Kota/Kab.</th>
-				<td>Bentuknya multilevel dropdown</td>
+				<td>
+					<select class="browser-default custom-select" name='kabupaten' id="kabupaten_dropdown" onchange="selectKecamatan(this.options[this.selectedIndex].value)">
+						<option value="">Pilih Kabupaten</option>
+						<?php foreach($kabupaten as $kab) {?>
+						<option name="kabupaten" value="<?php echo $kab->id_kab; ?>"><?php echo $kab->nama_kabupaten; ?></option>
+						<?php } ?>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<th >Kec.</th>
-				<td>Bentuknya multilevel dropdown</td>
+				<td>
+					<select class="browser-default custom-select" name='kecamatan' id="kecamatan_dropdown" onchange="selectKelurahan(this.options[this.selectedIndex].value)">
+						<option value="">Pilih Kecamatan</option>
+						<?php foreach($kecamatan as $kec) {?>
+						<option name="kecamatan" value="<?php echo $kec->id_kecamatan; ?>"><?php echo $kec->nama_kecamatan; ?></option>
+						<?php } ?>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<th >Alamat</th>
-				<td><textarea name="alamat" type="text" rows="5" required></textarea></td>
+				<td><textarea class="form-control" name="alamat" type="text" rows="5" required></textarea></td>
 			</tr>
 			<tr>
 				<th >Kode Pos</th>
-				<td><input name="Kode Pos" type="text" required></td>
+				<td><input class="form-control" name="Kode Pos" type="text" required></td>
 			</tr>
 			<tr>
 				<th >Catatan</th>
-				<td><textarea name="catatan" type="text" rows="5" required></textarea></td>
+				<td><textarea class="form-control" name="catatan" type="text" rows="5" required></textarea></td>
 			</tr>
 		</table>
 </div>
@@ -121,7 +142,7 @@
 </style>
 
 <div class="container form-horizontal">
-	<table class="table bg-secondary table-striped  container-fluid">
+	<table class="table table-dark table-borderless container-fluid">
 		<tr>
 			<th class="tulisandalambagan" style="width : 40%; background:#555555;color:white;"><span><img style="color:white;"src="<?php echo base_url('assets/contoh home/pic/baseline-payment-24px.svg');?> "></span> Metode Pembayaran</th>
 			<th style="background:#555555;"></th>
@@ -169,12 +190,12 @@
 		</tr>
 	</table>
 	<table class="table table-striped container-fluid">
-		<tr>
+		<tr style="background:white;">
 			<td>
 				<h4 class="text-left">Total Belanja :</h4>
 			</td>
 			<td>
-				<h4 class="text-right"><input type="hidden" id="hargasementara" value="<?php echo $this->session->userdata('totalbayar');?>">Rp<input id="totalfixharga" value="" readonly></h4>
+				<h4 class="text-right"><input type="hidden" id="hargasementara" value="<?php echo $this->session->userdata('totalbayar');?>">Rp<input id="totalfixharga" name="totalbelanja" value="" readonly></h4>
 			</td>
 		</tr>
 		<tr>
@@ -229,4 +250,28 @@
 			document.getElementById('totalfixharga').value = totalfix;
 		}
 	}
+</script>
+
+<script type="text/javascript">        
+  function selectKabupaten(id_prov){
+   if(id_prov!="name"){
+    loadData('kabupaten',id_prov);  
+    $("#kecamatan_dropdown").html("<option value='-1'>Pilih kecamatan</option>"); 
+   }else{
+    $("#kabupaten_dropdown").html("<option value='-1'>Pilih kabupaten</option>");
+    $("#kecamatan_dropdown").html("<option value='-1'>Pilih kecamatan</option>");  
+   }
+  }
+
+  function selectKecamatan(id_kab){
+   if(id_kab!="-1"){
+    loadData('kecamatan',id_kab);
+    $("#kelurahan_dropdown").html("<option value='-1'>Pilih kelurahan</option>");
+   }else{
+    $("#kecamatan_dropdown").html("<option value='-1'>Pilih kecamatan</option>");
+    $("#kelurahan_dropdown").html("<option value='-1'>Pilih kelurahan</option>");  
+   }
+  }
+  
+  
 </script>
