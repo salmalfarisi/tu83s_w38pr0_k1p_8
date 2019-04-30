@@ -44,7 +44,7 @@
 <div class="col-lg-2 col-md-4 footer-links ">
   <h6 style="color:#FF6600"><b> LINK</b> </h6>
   <a href="#" style="color: white; font-size: 13px">Lokasi Store</a><br>
-  <a href="#" style="color: white; font-size: 13px">Konfirmasi Pembayaran</a><br>
+  <a href="<?php echo base_url('testing2/konfirmasibarang');?>" style="color: white; font-size: 13px">Konfirmasi Pembayaran</a><br>
   <a href="<?php echo base_url('testing2/aboutus');?>" style="color: white; font-size: 13px">About Us</a><br>
   <a href="<?php echo base_url('testing2/beli');?>" style="color: white; font-size: 13px">Cara Beli</a><br>
 
