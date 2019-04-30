@@ -3,6 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class DatabaseGeoff extends CI_Model 
 {
+	/*
+		Menampilkan semua produk yang ada dalam database
+	*/
 	public function showsemuaproduk()
 	{
 		$this->db->select('*');
@@ -11,14 +14,14 @@ class DatabaseGeoff extends CI_Model
 		return $query->result();
 	}
 	
-	//menampilkan produk berdasarkan hasil pencarian
+	/*
+		Menampilkan hasil pencarian produk berdasarkan permintaan pengguna
+	*/
 	public function cariproduk()
 	{
 		$keyword = $this->input->post('cariproduk', true);
-		//use query builder class to search data mahasiswa based on keyword "nama" or "jurusan" or "nim" or "email"
 		$this->db->select('*');
 		$this->db->from('produk');
-		//pasang like atau or like supaya bisa mencari hasil dari database yang ada. dan semua atribut harus dikeluarkan semua disini
 		$this->db->like('namaproduk', $keyword);
 		$this->db->or_like('jenisproduk', $keyword);
 		$this->db->or_like('deskripsiproduk', $keyword);
@@ -36,7 +39,9 @@ class DatabaseGeoff extends CI_Model
 		return $query->result();
 	}
 	
-	//menampilkan semua data cart yang akan dibeli pelanggan
+	/*
+		Menampilkan produk yang sudah diorder oleh pengguna
+	*/
 	public function cekbarang()
 	{
 		$this->db->select('*');
@@ -53,6 +58,9 @@ class DatabaseGeoff extends CI_Model
 		}
 	}
 	
+	/*
+		Menampilkan produk yang dipinta pengguna
+	*/
 	public function detailbarang($idproduk)
 	{
 		$this->db->select('*');
@@ -63,12 +71,18 @@ class DatabaseGeoff extends CI_Model
 		return $query;
 	}
 	
+	/*
+		Berfungsi untuk memasukkan nama anonymous pengguna ke dalam database
+	*/
 	public function insertnama($data)
 	{	
 		$query = $this->db->insert('pemesanan', $data);
 		return $query;
 	}
 	
+	/*
+		Menampilkan random produk perempuan berdasarkan jenis kelamin
+	*/
 	public function showrandomcewek($jeniskelamin)
 	{
 		$this->db->select('*');
@@ -80,6 +94,9 @@ class DatabaseGeoff extends CI_Model
 		return $query->result();
 	}
 	
+	/*
+		Menampilkan random produk pria berdasarkan jenis kelamin
+	*/
 	public function showrandomcowok($jeniskelamin)
 	{
 		$this->db->select('*');
@@ -91,6 +108,9 @@ class DatabaseGeoff extends CI_Model
 		return $query->result();
 	}
 	
+	/*
+		Menampilkan produk yang dipinta oleh pengguna
+	*/
 	public function panggilproduk($idproduk)
 	{
 		$this->db->select('idproduk, namaproduk, harga');
@@ -100,6 +120,9 @@ class DatabaseGeoff extends CI_Model
 		return $query->row_array();
 	}
 	
+	/*
+		Mencari nomor pesanan untuk pengguna berdasarkan userdata anonymous user
+	*/
 	public function carinamapelanggan($nama)
 	{
 		$this->db->select('nopemesanan');
@@ -110,86 +133,55 @@ class DatabaseGeoff extends CI_Model
 		return $query->row();
 	}
 	
+	/*
+		Memasukkan data produk yang dipesan oleh pengguna ke dalam tabel cart
+	*/
 	public function addcart($data)
 	{
 		$this->db->insert('cart', $data);
 	}
 	
 	/*
-	//outputnya ialah menjumlah total produk yang sama ia beli
-	public function totalhargasementara()
+		Berfungsi untuk memasukkan value total bayar berdasarkan produk yang dipesan oleh pengguna
+	*/
+	public function masukkantotalbayar($masukkanharga, $nama)
 	{
-		//SELECT pemesanan.namasementara, cast(cart.jumlahproduk as unsigned ) * cast(produk.harga as unsigned ) AS totalharga FROM pemesanan join cart on (pemesanan.nopemesanan = cart.nopemesanan) JOIN produk ON (cart.idproduk = produk.idproduk) where pemesanan.namasementara = "xsTKASidWv"
-		//$this->db->select('cast(cart.jumlahproduk as unsigned) * cast(produk.harga as unsigned) as totalharga');
-		$panggilnama = $this->session->userdata('namapelanggan');
-		$this->db->select('cast(pemesanan.totalbayar as unsigned) + cast(cart.jumlahproduk as unsigned ) as totalharga');
-		$this->db->select('cast(cart.jumlahproduk as unsigned) * cast(produk.harga as unsigned) AS totalhargaproduk');
 		$this->db->from('pemesanan');
-		$this->db->join('cart','pemesanan.nopemesanan=cart.nopemesanan');
-		$this->db->join('produk','cart.idproduk=produk.idproduk');
-		$this->db->where('namasementara', $panggilnama);
-		$this->db->order_by('cart.idpemesanan','DESC');
+		$this->db->where('namasementara', $nama);
 		$this->db->limit('1');
-		$query = $this->db->get();
-		return $query->row();
-	}*/
-	
-	/*
-	//memasukkan harga produk yang dibeli konsumen
-	public function totalhargaprodukfix($masukkanhargafix)
-	{
-		$ambilidpemesanan = $this->session->userdata('idpemesanan');
-		$namaorang = $this->session->userdata('namapelanggan');
-		$this->db->select('cart.totalhargaproduk');
-		$this->db->limit('1');
-		$this->db->from('pemesanan');
-		$this->db->join('cart','pemesanan.nopemesanan=cart.nopemesanan','RIGHT OUTER');
-		$this->db->where('pemesanan.namasementara', $namaorang);
-		$this->db->where('cart.idpemesanan', $ambilidpemesanan);
-		$this->db->order_by('cart.idpemesanan','DESC');
-		$query = $this->db->get();
-		$this->db->update('cart', $masukkanhargafix);
-	}*/
-	
-	public function masukkantotalbayar($masukkanharga)
-	{
-		$namaorang = $this->session->userdata('namapelanggan');
-		$this->db->from('pemesanan');
-		$this->db->where('namasementara', $namaorang);
-		$this->db->limit('1');
-		$query = $this->db->get();
 		$this->db->update('pemesanan', $masukkanharga);
 	}
 	
-	public function totalbelanja($totalhargabelanja)
+	/*
+		Menampilkan produk yang ada di dalam tabel cart berdasarkan anonymous pengguna
+	*/
+	public function ambilhargaproduk($idpemesanan)
 	{
-		$panggilnama = $this->session->userdata('namapelanggan');
-		$this->db->select('cast(pemesanan.totalbayar as unsigned) + cast(cart.jumlahproduk as unsigned ) as totalharga');
-		$this->db->from('pemesanan');
-		$this->db->join('cart','pemesanan.nopemesanan=cart.nopemesanan');
-		$this->db->join('produk','cart.idproduk=produk.idproduk');
-		$this->db->where('pemesanan.namasementara', $panggilnama);
-		$this->db->limit('1');
+		$this->db->select('totalhargaproduk');
+		$this->db->from('cart');
+		$this->db->where('idpemesanan', $idpemesanan);
 		$query = $this->db->get();
 		return $query->row();
 	}
 	
-	public function menjumlahkantotalbayar($totalbayar2)
-	{
-		//$panggilnama = $this->session->userdata('namapelanggan');
-		//$this->db->where('namasementara', $panggilnama);
-		//$this->db->get();
-		$this->db->update('pemesanan', $totalbayar2);
-	}
-	
+	/*
+		Berfungsi untuk menghapus data yang ada dalam cart berdasarkan nomor pemesanan
+		sudah diurutkan dari nama anonymous pengguna
+	*/
 	public function hapusbarangorderan($idpemesanan)
 	{
-		
+		$this->db->select('*');	
+		$this->db->from('cart');
+		$this->db->limit('1');
+		$query = $this->db->where('idpemesanan', $idpemesanan);
+		$query = $this->db->delete();
 	}
 	
+	/*
+		Berfungsi untuk menampilkan semua data yang ada di dalam cart berdasarkan nama anonymous pengguna
+	*/
 	public function showcart()
 	{
-		//SELECT * from pemesanan right join cart on ('cart.pemesanan=pemesanan.nopemesanan') right join produk on ('cart.idproduk=produk.idproduk') where pemesanan.namasementara = 'aNhtwCzqdI'
 		$namaorang = $this->session->userdata('namapelanggan');
 		$this->db->select('*');
 		$this->db->from('pemesanan');
@@ -197,6 +189,73 @@ class DatabaseGeoff extends CI_Model
 		$this->db->join('produk','cart.idproduk=produk.idproduk','RIGHT OUTER');
 		$this->db->where('pemesanan.namasementara', $namaorang);
 		$query = $this->db->get();
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	/*
+		Menampilkan semua data provinsi
+	*/
+	public function optionprovinsi()
+	{
+		$this->db->select('*');
+		$this->db->from('provinsi');
+		$query = $this->db->get();
 		return $query->result();
+	}
+	
+	/*
+		Menampilkan semua data kabupaten
+	*/
+	public function optionkabupaten()
+	{
+		$this->db->select('*');
+		$this->db->from('provinsi');
+		$this->db->join('kabupaten','provinsi.id_provinsi = kabupaten.id_prov', 'RIGHT OUTER');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
+	/*
+		Menampilkan semua data kecamatan
+	*/
+	public function optionkecamatan()
+	{
+		$this->db->select('*');
+		$this->db->from('provinsi');
+		$this->db->join('kabupaten','provinsi.id_provinsi = kabupaten.id_prov', 'RIGHT OUTER');
+		$this->db->join('kecamatan','kabupaten.id_kab = kecamatan.id_kab', 'RIGHT OUTER');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
+	/*
+		Memasukkan data identitas diri ke dalam tabel pemesanan
+	*/
+	public function insertdatapemesanan($inputform, $nama)
+	{
+		$this->db->from('pemesanan');
+		$this->db->where('namasementara', $nama);
+		//$query = $this->db->get();
+		$query = $this->db->update('pemesanan', $inputform);
+	}
+	
+	/*
+		Menampilkan kode transaksi dan harga tagihan yang harus dibayar
+		berdasarkan nama anonymous pengguna
+	*/
+	public function showkodedanharga($nama)
+	{
+		$this->db->select('totalbayar, kodetransaksi, metodepembayaran');
+		$this->db->from('pemesanan');
+		$this->db->where('namasementara', $nama);
+		$query = $this->db->get();
+		return $query->row();
 	}
 }
