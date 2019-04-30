@@ -171,7 +171,7 @@ class testing2 extends CI_Controller {
 		$this->DatabaseGeoff->addcart($data);	
 		
 		$masukkanharga = ["totalbayar" => $hasilpenjumlahan];
-		$this->DatabaseGeoff->masukkantotalbayar($masukkanharga);
+		$this->DatabaseGeoff->masukkantotalbayar($masukkanharga, $nama);
 		
 		$this->session->set_userdata('totalbayar', $hasilpenjumlahan);
 		
