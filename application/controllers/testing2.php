@@ -31,7 +31,7 @@ class testing2 extends CI_Controller {
 		Berfungsi untuk :
 		- Menampilkan halaman home
 		- Membuat anonymous user yang mengakses halaman ini
-		- Membuat session baru untuk pewarnaan dan judul halaman dalam website
+		- Membuat session baru untuk pewarnaan, anonymous user dan judul halaman dalam website
 	*/
 	public function index()
 	{
@@ -127,7 +127,7 @@ class testing2 extends CI_Controller {
 	
 	/*
 		Berfungsi untuk :
-		- Menampilkan produk yang dipinta oleh pengguna
+		- Menampilkan produk berdasarkan jenis kelamin yang dipinta oleh pengguna
 		- Membuat session baru untuk produk yang dipinta berguna sebagai antisipasi kedepannya
 		- Membuat session baru untuk membedakan warna tombol untuk wanita dan pria
 	*/
@@ -136,26 +136,6 @@ class testing2 extends CI_Controller {
 		$this->session->set_userdata('idproduk', $idproduk);
 		$panggilproduk = $this->DatabaseGeoff->panggilproduk($idproduk);
 		$this->session->set_userdata($panggilproduk);
-		$jeniskelamin = $this->session->userdata('orderby');
-		if($jeniskelamin = 'L')
-		{
-			//redirect('testing2/detailcowok($idproduk)');
-			$this->session->set_userdata('warnagender','btn-dark');
-			redirect('testing2/detailcowok');
-		}
-		if ($jeniskelamin = 'P')
-		{
-			//redirect('testing2/detailcowok($idproduk)');
-			$this->session->set_userdata('warnagender','btn-danger');
-			redirect('testing2/detailcewek'($idproduk));
-		}
-	}
-	
-	/*
-		Berfungsi untuk menampilkan produk pria yang dipilih oleh pengguna
-	*/
-	public function detailcowok()
-	{
 		$idproduk = $this->session->userdata('idproduk');
 		$deskripsi['detail'] = $this->DatabaseGeoff->detailbarang($idproduk)->result();
 		$jeniskelamin = $this->session->userdata('orderby');
@@ -163,20 +143,6 @@ class testing2 extends CI_Controller {
 		$this->load->view('template/header');
 		$this->load->view('Detail', $deskripsi);
 		$this->load->view('template/footer');
-	}
-	
-	/*
-		Berfungsi untuk menampilkan produk wanita yang dipilih oleh pengguna
-	*/
-	public function detailcewek()
-	{
-		$idproduk = $this->session->userdata('idproduk');
-		$deskripsi['detail'] = $this->DatabaseGeoff->detailbarang($idproduk)->result();
-		$jeniskelamin = $this->session->userdata('orderby');
-		$deskripsi['randomproduk'] = $this->DatabaseGeoff->showrandomcewek($jeniskelamin);
-		$this->load->view('template/header');
-		$this->load->view('DetailCewek', $deskripsi);
-		$this->load->view('template/footer');		
 	}
 	
 	/*
@@ -217,8 +183,18 @@ class testing2 extends CI_Controller {
 	*/
 	public function hapusbarangorderan($idpemesanan)
 	{
-			$this->DatabaseGeoff->hapusbarangorderan($idpemesanan);
-			redirect('testing2/panggilcart');
+		$nama= $this->session->userdata('namapelanggan');
+		$totalbayar = $this->session->userdata('totalbayar');
+		
+		$hargaproduk = $this->DatabaseGeoff->ambilhargaproduk($idpemesanan)->totalhargaproduk;
+		
+		$kurangintotal = $totalbayar - $hargaproduk;
+		$masukkanharga = ["totalbayar" => $kurangintotal];
+		$this->DatabaseGeoff->masukkantotalbayar($masukkanharga, $nama);
+		$this->DatabaseGeoff->hapusbarangorderan($idpemesanan);
+		$this->session->set_userdata('totalbayar', $kurangintotal);
+		
+		redirect('testing2/panggilcart');
 	}
 	
 	/*
@@ -241,8 +217,50 @@ class testing2 extends CI_Controller {
 	{
 		//$nama= $this->session->userdata('namapelanggan');
 		$cart['cart'] = $this->DatabaseGeoff->showcart();
+		$cart['provinsi'] = $this->DatabaseGeoff->optionprovinsi();
+		$cart['kabupaten'] = $this->DatabaseGeoff->optionkabupaten();
+		$cart['kecamatan'] = $this->DatabaseGeoff->optionkecamatan();
 		$this->load->view('template/header');
 		$this->load->view('konfirmasipembelian/identitasdiri', $cart);
+		$this->load->view('template/footer');
+	}
+	
+	/*
+		Berfungsi untuk mengupdate isi table pemesanan berdasarkan nama anonymous pengguna
+	*/
+	public function updatedatapemesanan()
+	{
+		$kodekonfirmasi = random_string('nozero', 10);
+		$nama= $this->session->userdata('namapelanggan');
+		$inputform = array(
+			'nomortelepon' => $this->input->post('nomortelepon'),
+			'email' => $this->input->post('email'),
+			'namalengkap' => $this->input->post('namapelanggan'),
+			'provinsi' => $this->input->post('provinsi'),
+			'kota' => $this->input->post('kabupaten'),
+			'kecamatan' => $this->input->post('kecamatan'),
+			'alamattujuan' => $this->input->post('alamat'),
+			'catatan' => $this->input->post('catatan'),
+			'kurirpengiriman' => $this->input->post('pilihkurir'),
+			'metodepembayaran' => $this->input->post('pilihmetode'),
+			'kodetransaksi' => $kodekonfirmasi,
+			'totalbayar' => $this->input->post('totalbelanja')
+		);
+				
+		$this->DatabaseGeoff->insertdatapemesanan($inputform, $nama);
+		redirect('testing2/konfirmasipembayaran');
+	}
+	
+	/*
+		Berfungsi untuk menampilkan kode transaksi dan total tagihan yang harus dibayar
+		berdasarkan nama anonymous pengguna
+	*/
+	public function konfirmasipembayaran()
+	{
+		$nama= $this->session->userdata('namapelanggan');
+		$kodekonfirmasi['kodeharga'] = $this->DatabaseGeoff->showkodedanharga($nama);
+		$this->load->view('template/header');
+		$this->load->view('konfirmasipembelian/pembayaran',$kodekonfirmasi);
 		$this->load->view('template/footer');
 	}
 	
