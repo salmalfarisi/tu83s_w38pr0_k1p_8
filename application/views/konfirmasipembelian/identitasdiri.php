@@ -37,7 +37,7 @@
 </div>
 
 <div class="container">
-	<form method="POST" action="#">
+	<form method="POST" action="<?php echo base_url('testing2/updatedatapemesanan');?>">
 		<table class="table container-fluid">
 			<tr>
 				<th style="width : 20%; background:#d6d8db;"><span><img src="<?php echo base_url('assets/contoh home/pic/baseline-place-24px.svg');?> "></span> Data & Alamat Kirim</th>
@@ -58,7 +58,7 @@
 			<tr>
 				<th>Provinsi</th>
 				<td>
-					<select class="browser-default custom-select" name='provinsi' id="provinsi_dropdown">
+					<select class="browser-default custom-select" name="provinsi" id="provinsi_dropdown" >
 						<option value="">Pilih Provinsi</option>
 						<?php foreach($provinsi as $prov) {?>
 						<option name="provinsi" value="<?php echo $prov->id_provinsi; ?>"><?php echo $prov->nama_provinsi; ?></option>
@@ -69,21 +69,21 @@
 			<tr>
 				<th >Kota/Kab.</th>
 				<td>
-					<select class="browser-default custom-select" name='kabupaten' id="kabupaten_dropdown" onchange="selectKecamatan(this.options[this.selectedIndex].value)">
+					<select class="browser-default custom-select" name="kabupaten" class="kabupaten" id="kabupaten_dropdown">
 						<option value="">Pilih Kabupaten</option>
-						<?php foreach($kabupaten as $kab) {?>
+					<?php foreach($kabupaten as $kab) {?>
 						<option name="kabupaten" value="<?php echo $kab->id_kab; ?>"><?php echo $kab->nama_kabupaten; ?></option>
-						<?php } ?>
+					<?php } ?>
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<th >Kec.</th>
 				<td>
-					<select class="browser-default custom-select" name='kecamatan' id="kecamatan_dropdown" onchange="selectKelurahan(this.options[this.selectedIndex].value)">
+					<select class="browser-default custom-select" name="kecamatan" id="kecamatan_dropdown">
 						<option value="">Pilih Kecamatan</option>
 						<?php foreach($kecamatan as $kec) {?>
-						<option name="kecamatan" value="<?php echo $kec->id_kecamatan; ?>"><?php echo $kec->nama_kecamatan; ?></option>
+							<option name="kecamatan" value="<?php echo $kec->id_kecamatan; ?>"><?php echo $kec->nama_kecamatan; ?></option>
 						<?php } ?>
 					</select>
 				</td>
@@ -109,15 +109,15 @@
 			<th style="background:#d6d8db;"></th>
 		</tr>
 		<tr>
-			<th><input onclick="totalharga()" type="radio" id="jne" name="pilihkurir" value="11000"> <span><img style="width:150px; height:50px;" class="img-responsive img-block" src="<?php echo base_url('assets/contoh home/pic/jeniskurirkirim/jne.jpg');?> "></span></th>
+			<th><input onclick="totalharga()" type="radio" name="pilihkurir" id="namajne" value="JNE"> <input type="hidden" id="jne" value="11000"><span><img style="width:150px; height:50px;" class="img-responsive img-block" src="<?php echo base_url('assets/contoh home/pic/jeniskurirkirim/jne.jpg');?> "></span></th>
 			<th class="text-right" style="color:#f60;">Rp.11,000</th>
 		</tr>
 		<tr>
-			<th><input onclick="totalharga()" type="radio" id="sicepat" name="pilihkurir" value="10000">  <span><img style="width:150px; height:50px;" class="img-responsive img-block" src="<?php echo base_url('assets/contoh home/pic/jeniskurirkirim/sicepat.png');?> "></span></th>
+			<th><input onclick="totalharga()" type="radio"name="pilihkurir" id="namasicepat" value="sicepat"> <input type="hidden" id="sicepat" value="10000"> <span><img style="width:150px; height:50px;" class="img-responsive img-block" src="<?php echo base_url('assets/contoh home/pic/jeniskurirkirim/sicepat.png');?> "></span></th>
 			<th class="text-right" style="color:#f60;">Rp.10,000</th>
 		</tr>
 		<tr>
-			<th><input onclick="totalharga()" type="radio" id="posindo" name="pilihkurir" value="10000"> <span><img style="width:150px; height:50px;" class="img-responsive img-block" src="<?php echo base_url('assets/contoh home/pic/jeniskurirkirim/posindonesia.png');?> "></span></th>
+			<th><input onclick="totalharga()" type="radio" name="pilihkurir" id="namaposindo" value="poindo"> <input type="hidden" id="posindo" value="10000"><span><img style="width:150px; height:50px;" class="img-responsive img-block" src="<?php echo base_url('assets/contoh home/pic/jeniskurirkirim/posindonesia.png');?> "></span></th>
 			<th class="text-right"style="color:#f60;">Rp.10,000</th>
 		</tr>
 	</table>
@@ -152,7 +152,9 @@
 		</tr>
 		<tr>
 			<th class="tulisandalambagan" style="background:#666666;">
-				<input onclick="totalharga()" type="radio" id="bank" name="pilihmetode" value="0"> Bank Transfer
+				<input onclick="totalharga()" type="radio" name="pilihmetode" id="namabank" value="bank">
+				<input type="hidden" id="bank" value="0">				
+				Bank Transfer
 				<hr>
 			</th>
 			<th class="tulisandalambagan text-right" style="color:white; background:#666666;">
@@ -166,7 +168,9 @@
 		</tr>
 		<tr>
 			<th class="tulisandalambagan" style="background:#666666;">
-				<input onclick="totalharga()" type="radio" id="alfamart" name="pilihmetode" value="5000"> Alfamart
+				<input onclick="totalharga()" type="radio" name="pilihmetode" id="namaalfamart" value="Alfamart">
+				<input type="hidden" id="alfamart"  value="5000">
+				Alfamart
 				<hr>
 			</th>
 			<td class="text-right tulisandalambagan" style="background:#666666;">
@@ -178,7 +182,9 @@
 		<tr>
 			<tr>
 				<th class="tulisandalambagan"  style="background:#666666;">
-					<input onclick="totalharga()" type="radio" id="indomaret" name="pilihmetode" value="6500"> Indomaret
+					<input onclick="totalharga()" type="radio" name="pilihmetode" id="namaindomaret" value="indomaret">
+					<input type="hidden" id="indomaret" value="6500">
+					Indomaret
 					<hr>
 				</th>
 				<td class="text-right"style="color:white;background:#666666;">
@@ -203,7 +209,7 @@
 					<a href="<?php echo base_url('testing2/panggilcart');?>" class="btn <?php echo $this->session->userdata('warnagender'); ?> btn-block">KEMBALI</a>
 				</td>
 				<td>
-					<a href="#" class="btn <?php echo $this->session->userdata('warnagender'); ?> btn-block">LANJUT KE PEMBAYARAN</a>
+					<button href="<?php echo base_url('testing2/updatedatapemesanan');?>" type="submit" class="btn <?php echo $this->session->userdata('warnagender'); ?> btn-block">LANJUT KE PEMBAYARAN</button>
 				</td>
 			</tr>
 	</table>
@@ -212,20 +218,20 @@
 <script type="text/javascript">
 	function totalharga()
 	{
-		if(document.getElementById('jne').checked)
+		if(document.getElementById('namajne').checked)
 		{
 			var tambahkurir = document.getElementById('jne').value;
 		}
-		else if(document.getElementById('sicepat').checked)
+		else if(document.getElementById('namasicepat').checked)
 		{
 			var tambahkurir = document.getElementById('sicepat').value;
 		}
-		if(document.getElementById('posindo').checked)
+		if(document.getElementById('namaposindo').checked)
 		{
 			var tambahkurir = document.getElementById('posindo').value;
 		}
 		
-		if(document.getElementById('bank').checked)
+		if(document.getElementById('namabank').checked)
 		{
 			var tambahmetode = document.getElementById('bank').value;
 			var totalharga = document.getElementById('hargasementara').value;
@@ -233,7 +239,7 @@
 			var totalfix =  parseInt(totalharga) + parseInt(tambahkurir) + parseInt(tambahmetode);
 			document.getElementById('totalfixharga').value = totalfix;
 		}
-		else if(document.getElementById('alfamart').checked)
+		else if(document.getElementById('namaalfamart').checked)
 		{
 			var tambahmetode = document.getElementById('alfamart').value;
 			var totalharga = document.getElementById('hargasementara').value;
@@ -241,7 +247,7 @@
 			var totalfix =  parseInt(totalharga) + parseInt(tambahkurir) + parseInt(tambahmetode);
 			document.getElementById('totalfixharga').value = totalfix;
 		}
-		else if(document.getElementById('indomaret').checked)
+		else if(document.getElementById('namaindomaret').checked)
 		{
 			var tambahmetode = document.getElementById('indomaret').value;
 			var totalharga = document.getElementById('hargasementara').value;
@@ -250,28 +256,4 @@
 			document.getElementById('totalfixharga').value = totalfix;
 		}
 	}
-</script>
-
-<script type="text/javascript">        
-  function selectKabupaten(id_prov){
-   if(id_prov!="name"){
-    loadData('kabupaten',id_prov);  
-    $("#kecamatan_dropdown").html("<option value='-1'>Pilih kecamatan</option>"); 
-   }else{
-    $("#kabupaten_dropdown").html("<option value='-1'>Pilih kabupaten</option>");
-    $("#kecamatan_dropdown").html("<option value='-1'>Pilih kecamatan</option>");  
-   }
-  }
-
-  function selectKecamatan(id_kab){
-   if(id_kab!="-1"){
-    loadData('kecamatan',id_kab);
-    $("#kelurahan_dropdown").html("<option value='-1'>Pilih kelurahan</option>");
-   }else{
-    $("#kecamatan_dropdown").html("<option value='-1'>Pilih kecamatan</option>");
-    $("#kelurahan_dropdown").html("<option value='-1'>Pilih kelurahan</option>");  
-   }
-  }
-  
-  
 </script>
