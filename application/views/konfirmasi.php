@@ -19,7 +19,7 @@
                 <?php endif; ?> -->
 
                 <div class="card-body"  >
-                    <form action="" method="post" enctype="multipart/form-data"><?php echo form_open_multipart('admin/tambahproduk');?>
+                    <form action="#" method="post" enctype="multipart/form-data"><?php echo form_open_multipart('#');?>
                         <div class="form-group">
                             <label for="nama">ATAS NAMA</label>
                             <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Pemilik Rekening" required>

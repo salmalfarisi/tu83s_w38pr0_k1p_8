@@ -94,7 +94,7 @@
 			</tr>
 			<tr>
 				<th >Kode Pos</th>
-				<td><input class="form-control" name="Kode Pos" type="text" required></td>
+				<td><input class="form-control" name="KodePos" type="text" required></td>
 			</tr>
 			<tr>
 				<th >Catatan</th>
