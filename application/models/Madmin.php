@@ -26,9 +26,20 @@ class Madmin extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('pemesanan');
+		$this->db->where('namalengkap is not null',null, false);
 		
 		$query = $this->db->get();
 		return $query->result_array();
+	}
+	
+	public function showallpesanan($nopemesanan)
+	{
+		$this->db->select('*');
+		$this->db->from('cart');
+		$query = $this->db->where('nopemesanan',$nopemesanan);
+		$query = $this->db->where('jadipesan','Y');
+		$query = $this->db->get();
+		return $query->result();
 	}
 
 	public function tambahproduk()
@@ -73,14 +84,14 @@ class Madmin extends CI_Model
 		
 		$this->db->where("idproduk", $id);  
         return $this->db->delete("produk");
-	}
-
-	public function hapuspesanan($id)
-	{
+	}		
 		
-		$this->db->where("nopemesanan", $id);  
-        return $this->db->delete("pemesanan");
-	}
+	public function hapusdatacart($nopemesanan)
+	{
+		$this->db->from("pemesanan");
+		$query = $this->db->where("nopemesanan", $nopemesanan);  
+		return $query = $this->db->delete('cart');
+	}		
 
 	public function getProdukById($id)
 	{

@@ -246,6 +246,17 @@ class DatabaseGeoff extends CI_Model
 		$query = $this->db->update('pemesanan', $inputform);
 	}
 	
+	
+	
+	/*
+		Mengubah status jadi pesan jadi iya dengan tujuan agar terbaca dalam halaman pemesanan admin
+	*/
+	public function ubahiya($jadipesan, $carinama)
+	{
+		$this->db->where('nopemesanan',$carinama);
+		$query = $this->db->update('cart', $jadipesan);
+	}
+	
 	/*
 		Menampilkan kode transaksi dan harga tagihan yang harus dibayar
 		berdasarkan nama anonymous pengguna
