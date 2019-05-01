@@ -226,12 +226,16 @@ class testing2 extends CI_Controller {
 	}
 	
 	/*
-		Berfungsi untuk mengupdate isi table pemesanan berdasarkan nama anonymous pengguna
+		Berfungsi untuk : 
+		- mengupdate isi table pemesanan berdasarkan nama anonymous pengguna
+		- menghapus semua session yang ada dan menggantinya dengan data anonymous user yang baru.
+		bertujuan agar tidak terjadi duplicate data yang sudah ada berhasil dipesan
 	*/
 	public function updatedatapemesanan()
 	{
 		$kodekonfirmasi = random_string('nozero', 10);
 		$nama= $this->session->userdata('namapelanggan');
+		$carinama = $this->DatabaseGeoff->carinamapelanggan($nama)->nopemesanan;
 		$inputform = array(
 			'nomortelepon' => $this->input->post('nomortelepon'),
 			'email' => $this->input->post('email'),
@@ -243,11 +247,16 @@ class testing2 extends CI_Controller {
 			'catatan' => $this->input->post('catatan'),
 			'kurirpengiriman' => $this->input->post('pilihkurir'),
 			'metodepembayaran' => $this->input->post('pilihmetode'),
+			'kodepos' => $this->input->post('KodePos'),
 			'kodetransaksi' => $kodekonfirmasi,
 			'totalbayar' => $this->input->post('totalbelanja')
 		);
-				
+		
+		$jadipesan = ['jadipesan' => 'Y'];
+		$this->DatabaseGeoff->ubahiya($jadipesan, $carinama);
+		
 		$this->DatabaseGeoff->insertdatapemesanan($inputform, $nama);
+		
 		redirect('testing2/konfirmasipembayaran');
 	}
 	
@@ -259,6 +268,20 @@ class testing2 extends CI_Controller {
 	{
 		$nama= $this->session->userdata('namapelanggan');
 		$kodekonfirmasi['kodeharga'] = $this->DatabaseGeoff->showkodedanharga($nama);
+		
+		$anonymouspelanggan = random_string('alpha', 10);		
+		$data = 
+		[
+			"namasementara" => $anonymouspelanggan,
+			"totalbayar" => '0'
+		];
+		$this->DatabaseGeoff->insertnama($data);
+		$callnama = $this->session->set_userdata('namapelanggan', $anonymouspelanggan);
+		$this->session->set_userdata('totalbayar','0');
+		$this->session->set_userdata('orderby','Netral');
+		$this->session->set_userdata('Judul Halaman', 'GMX - GEOFF Max Footwear');
+		$this->session->set_userdata('warnagender','btn-dark');
+		
 		$this->load->view('template/header');
 		$this->load->view('konfirmasipembelian/pembayaran',$kodekonfirmasi);
 		$this->load->view('template/footer');
