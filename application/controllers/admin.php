@@ -67,6 +67,7 @@ class admin extends CI_Controller {
 		$this->load->view('admin/dataproduk',$data);
 				
 	}
+	
 	public function datapemesanan()
 	{
 		$data['pemesanan'] = $this->Madmin->daftarpemesanan();
@@ -77,6 +78,14 @@ class admin extends CI_Controller {
 		$this->load->view('template/adminheader');
 		$this->load->view('admin/datapemesanan',$data);
 				
+	}
+	
+	public function lihatpesanandetail($nopemesanan)
+	{
+		$data['detail'] = $this->Madmin->showallpesanan($nopemesanan);
+		$this->session->set_userdata('Judul Halaman', 'GMX- Detail Pesanan');
+		$this->load->view('template/adminheader');
+		$this->load->view('admin/detailpemesanan',$data);
 	}
 	
 	public function ubahproduk()
@@ -118,11 +127,11 @@ class admin extends CI_Controller {
 		$this->Madmin->hapusproduk($id);		
 			$this->session->set_flashdata('flash','dihapus');		
 			redirect('admin/dataproduk');
-		}
-
-		public function hapusPesanan($id)
+	}
+	
+	public function hapusPesanan($nopemesanan)
 	{		
-		$this->Madmin->hapuspesanan($id);		
+		$this->Madmin->hapusdatacart($nopemesanan);		
 		$this->session->set_flashdata('flash','dihapus');		
 		redirect('admin/datapemesanan');
 	}
