@@ -34,7 +34,7 @@
     <div class="row mt-5">
         <div class="col">
             <h3 class="text-center">Daftar Produk</h3>
-            <table class="table mt-5">
+            <table class="table mt-5 table-responsive">
                 <thead>
                     <tr>
                         <th class="text-center" scope="col">NAMA PRODUK</th>

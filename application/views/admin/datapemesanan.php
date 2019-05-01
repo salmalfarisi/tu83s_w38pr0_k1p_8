@@ -30,15 +30,17 @@
         <div class="col">
             <h3 class="text-center">Daftar Pemesanan</h3>
 
-            <table class="table mt-5">
+            <table class="table mt-5 table-responsive">
                 <thead>
                     <tr>
                         <th class="text-center" scope="col">KODE TRANSAKSI</th>
                         <th class="text-center" scope="col">NAMA LENGKAP</th>
-                        <th class="text-center" scope="col">ALAMAT</th>
                         <th class="text-center" scope="col">NO TELEPON</th>
-                        <th class="text-center" scope="col">KODE POS</th>
+						<th class="text-center" scope="col">KURIR PENGIRIMAN</th>
+                        <th class="text-center" scope="col">METODE PEMBAYARAN</th>
+						<th class="text-center" scope="col">ALAMAT</th>
                         <th class="text-center" scope="col">TOTAL BAYAR</th>
+						<th class="text-center" scope="col">CATATAN</th>
                         <th class="text-center" scope="col">AKSI</th>
                     </tr>
                 </thead>
@@ -47,13 +49,16 @@
                         <tr>
                             <td class="text-center"><?= $p['kodetransaksi']; ?></td>
                             <td class="text-center"><?= $p['namalengkap']; ?></td>
-                            <td class="text-center"><?= $p['alamattujuan']; ?></td>
                             <td class="text-center"><?= $p['nomortelepon']; ?></td>
-                            <td class="text-center"><?= $p['kodepos']; ?></td>
+							<td class="text-center"><?= $p['kurirpengiriman']; ?></td>
+                            <td class="text-center"><?= $p['metodepembayaran']; ?></td>
+							<td class="text-center"><?= $p['alamattujuan']; ?></td>
                             <td class="text-center">Rp<?= number_format($p['totalbayar'],0,",","."); ?></td>
+							<td class="text-center"><?= $p['catatan']; ?></td>
                             <td class="text-center">
                                
                                 <a href="<?= base_url(); ?>admin/hapusPesanan/<?= $p['nopemesanan'] ?>" class="badge badge-danger float-center" onclick="return confirm('Apakah anda yakin menghapus data ini?');" ?>hapus</a>
+								<a href="<?= base_url(); ?>admin/lihatpesanandetail/<?= $p['nopemesanan'] ?>" class="badge badge-success float-center" ?>lihat</a>
                             </td>
                         </tr></tr><?php }} ?>
                     
